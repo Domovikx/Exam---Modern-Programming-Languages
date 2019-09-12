@@ -19,6 +19,8 @@
         Если D = 0, то корень один.
         Если D &#60; 0, то нет решений.
 
+
+        <!-- task 2 -->
         <h2>5 баллов - task 2</h2>
         <p>Сведения о надбавках к окладу у работников предприятия представлены в виде вектора К из 20 элементов. Найти
             среднее арифметическое число работников, имеющих надбавку.<br>
@@ -27,7 +29,7 @@
 
         <input type="text" name="" id="task_2_input"
             value="20; 0; 30, 20/ 10.1; 0; 11,2; 0; 20; 40; 0; 20; 30; 10; 20; 20; 10; 30; 0; 20">
-        <div id="task_2_p"></div>
+        <div id="task_2_div"></div>
 
         <script>
             document.addEventListener("DOMContentLoaded", run_task_2)
@@ -38,6 +40,9 @@
                 const arr = task_2_input.value
                     .replace(/,/g, '.')
                     .split(/[^-0-9\.]/)
+                    .filter((item) => {
+                        return item != ''
+                    })
                     .map(Number)
                     .filter(item => item > 0)
 
@@ -47,7 +52,7 @@
                 const length = arr.length
                 const average = Math.round(sum / length * 100) / 100
 
-                task_2_p.innerHTML = (`
+                task_2_div.innerHTML = (`
                 <p>Фильтруем массив элементов: ${arr} (всего ${length} элементов)<br>
                 Сумма всех элементов: ${sum}<br>
                 Средняя арифметическая надбавка ${average}</p>
@@ -55,14 +60,58 @@
             }
         </script>
 
+
+        <!-- task 3 -->
         <h2>5 баллов - task 3</h2>
         Выпуск продукции ткацкими цехами предприятия представлен в виде вектора V из 10 элементов. Найти, сколько цехов
         предприятия выпустили продукции в объеме от 300 до 500 погонных метров. V = {600; 500; 300; 390; 640; 500; 500;
         490; 270; 450)
 
+
+        <!-- task 4 -->
         <h2>5 баллов - task 4</h2>
         Индексы потребительских цен представлены в виде вектора из 15 элементов. Найти, сколько раз встречается
         минимальный и максимальный элемент. P = {20; 45; 23; 34; 8; 27; 45; 24; 35; 17; 29; 45; 16; 34; 8}
+        <input type="text" name="" id="task_4_input" value="20; 45; 23; 34; 8; 27; 45; 24; 35; 17; 29; 45; 16; 34; 8 ">
+        <div id="task_4_div"></div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", run_task_4)
+            task_4_input.addEventListener("change", run_task_4, false)
+
+            function run_task_4() {
+
+                const arr = task_4_input.value
+                    .replace(/,/g, '.')
+                    .split(/[^-0-9\.]/)
+                    .filter((item) => {
+                        return item != ''
+                    })
+                    .map(Number)
+
+                let max = arr[0]
+                let min = arr[0]
+                for (const item of arr) {
+                    if (max < item) max = item
+                    if (min > item) min = item
+                }
+
+                let countMax = 0
+                let countMin = 0
+                for (const item of arr) {
+                    if (max == item) countMax++
+                    if (min == item) countMin++
+                }
+
+                const length = arr.length
+                task_4_div.innerHTML = (`
+                <p>Фильтруем массив элементов: ${arr} (всего ${length} элементов)<br>
+                Максимальный элемент: ${max} (кол-во: ${countMax})<br>
+                Минимальный элемент: ${min} (кол-во: ${countMin})<br>
+                `)
+            }
+        </script>
+
 
         <h2>5 баллов - task 5</h2>
         Сведения о количестве проданных товаров каждым продавцом представлены в виде целочисленного вектора Р из 20
@@ -70,7 +119,6 @@
         45; 0; 24; 35; 17; 29; 24; 16;
         34; 0; 8}
 
-        <hr>
 
         <h2>6 баллов - task 6 </h2>
         Написать программу проверки является ли число простым.
@@ -92,7 +140,6 @@
         <h2>6 баллов - task 10</h2>
         Проверить, является ли квадратная матрица симметричной относительно побочной диагонали.
 
-        <hr>
 
         <h2>7 баллов - task 11</h2>
         Ввести с консоли строку, содержащую набор слов, разделённых пробелами. Найти и вывести на экран слова, для

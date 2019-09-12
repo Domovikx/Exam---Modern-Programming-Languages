@@ -1,0 +1,14 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+main {
+    max-width: 1024px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+input {
+    max-width: 800px;
+    width: 100%;
+}

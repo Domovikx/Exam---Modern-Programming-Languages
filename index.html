@@ -7,6 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Экзаменационные задачи Ивановского И.П.</title>
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- MathJax-script -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
 </head>
 
 <body>
@@ -14,11 +20,13 @@
         <h2>5 баллов - task 1</h2>
         Написать программу решения квадратного уравнения. Корни только вещественные. Квадратное уравнение – это
         уравнение вида ax2 + bx + c = 0, где a не равно 0. Для решения квадратного уравнения можно использовать формулы:
-        <img src="assets/img/001.jpg" alt="" srcset=""> и <img src="assets/img/002.jpg" alt="" srcset=""> где D = b2 -
+        <div class="formula">$$x_+=\frac{-b+\sqrt{b^2-4ac}}{2a}$$</div>
+        и
+        <div class="formula">$$x_-=\frac{-b+\sqrt{b^2-4ac}}{2a}$$</div>
+        где D = b2 -
         4ac — дискриминант многочлена ax2 + bx + c. Если D > 0, то уравнение имеет два различных вещественных корня.
         Если D = 0, то корень один.
         Если D &#60; 0, то нет решений.
-
 
         <!-- task 2 -->
         <h2>5 баллов - task 2</h2>

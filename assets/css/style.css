@@ -17,6 +17,11 @@ input {
 }
 
 h2 {
-  margin: 50px 0 5px 0;
+  padding: 50px 0 5px 0;
   text-align: center;
+}
+
+.formula {
+  display: inline-block;
+  font-size: larger;
 }

@@ -73,7 +73,41 @@
         <h2>5 баллов - task 3</h2>
         Выпуск продукции ткацкими цехами предприятия представлен в виде вектора V из 10 элементов. Найти, сколько цехов
         предприятия выпустили продукции в объеме от 300 до 500 погонных метров. V = {600; 500; 300; 390; 640; 500; 500;
-        490; 270; 450)
+        490; 270; 450)<br>
+        <div class='wrap-item'><span>min</span> <input type="text" name="" id="task_3_min" value="300"></div>
+        <div class='wrap-item'><span>max</span> <input type="text" name="" id="task_3_max" value="500"></div>
+        <input type="text" name="" id="task_3_input" value="600; 500; 300; 390; 640; 500; 500; 490; 270; 450">
+        <div id="task_3_div"></div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", run_task_3)
+            task_3_input.addEventListener("change", run_task_3, false)
+            task_3_min.addEventListener("change", run_task_3, false)
+            task_3_max.addEventListener("change", run_task_3, false)
+
+            function run_task_3() {
+
+                const min = task_3_min.value
+                const max = task_3_max.value
+                const arr = task_3_input.value
+                    .replace(/,/g, '.')
+                    .split(/[^-0-9\.]/)
+                    .filter((item) => {
+                        return item != ''
+                    })
+                    .map(Number)
+                    .filter((item) => {
+                        if (item >= min & item <= max) return item
+                    })
+
+                const length = arr.length
+                task_3_div.innerHTML = (`
+                <p>Диапазон: ${min}...${max}<br>
+                Фильтруем массив элементов: ${arr} (всего ${length} элементов)<br> 
+                `)
+            }
+        </script>
+
 
 
         <!-- task 4 -->

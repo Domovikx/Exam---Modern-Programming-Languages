@@ -25,3 +25,7 @@ h2 {
   display: inline-block;
   font-size: larger;
 }
+
+.wrap-item {
+    display: inline-block;
+}

@@ -11,37 +11,24 @@ body {
 }
 
 main {
-  /* max-width: 1024px;
-  width: 100%;
-  margin: 0 auto; */
-
   max-width: 1024px;
   width: 100%;
   margin: 0 auto;
   background-color: darkslategrey;
   color: antiquewhite;
-  /* padding: 0 30px; */
   padding: 0 30px 60px;
   box-sizing: border-box;
 }
 
 input {
-  /* width: 100%;
-  font-size: inherit;
-  padding: 10px;
-  box-sizing: border-box; */
-
   width: 100%;
-  /* font-size: inherit; */
+
   padding: 10px;
   box-sizing: border-box;
   color: darkslategrey;
   font-size: larger;
-}
-
-textarea {
-  resize: none;
-  overflow: hidden;
+  border-radius: 5px;
+  border-style: none;
 }
 
 h2 {
@@ -56,4 +43,8 @@ h2 {
 
 .wrap-item {
   display: inline-block;
+}
+
+.width100 {
+  width: 100%;
 }

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
 
     <!-- font -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat+Alternates&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Marmelad&display=swap" rel="stylesheet">
 
     <!-- MathJax-script -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -62,9 +62,10 @@
                     * 100) / 100
                 const length = arr.length
                 const average = Math.round(sum / length * 100) / 100
+                const strArr = arr.join(', ')
 
                 task_2_div.innerHTML = (`
-                <p>Фильтруем массив элементов: ${arr} (всего ${length} элементов)<br>
+                <p>Фильтруем массив элементов: ${strArr} (всего ${length} элементов)<br>
                 Сумма всех элементов: ${sum}<br>
                 Средняя арифметическая надбавка ${average}</p>
                 `)
@@ -103,10 +104,11 @@
                         if (item >= min & item <= max) return item
                     })
 
+                const strArr = arr.join(', ')
                 const length = arr.length
                 task_3_div.innerHTML = (`
                 <p>Диапазон: ${min}...${max}<br>
-                Фильтруем массив элементов: ${arr} (всего ${length} элементов)<br> 
+                Фильтруем массив элементов: ${strArr} (всего ${length} элементов)<br> 
                 `)
             }
         </script>
@@ -149,8 +151,9 @@
                 }
 
                 const length = arr.length
+                const strArr = arr.join(', ')
                 task_4_div.innerHTML = (`
-                <p>Фильтруем массив элементов: ${arr} (всего ${length} элементов)<br>
+                <p>Фильтруем массив элементов: ${strArr} (всего ${length} элементов)<br>
                 Максимальный элемент: ${max} (кол-во: ${countMax})<br>
                 Минимальный элемент: ${min} (кол-во: ${countMin})<br>
                 `)

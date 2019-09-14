@@ -67,8 +67,9 @@
                 task_2_div.innerHTML = (`
                 <p>Фильтруем массив элементов: ${strArr} (всего ${length} элементов)<br>
                 Сумма всех элементов: ${sum}<br>
-                Средняя арифметическая надбавка ${average}</p>
-                `)
+                Средняя арифметическая надбавка ${average}
+                </p>`
+                )
             }
         </script>
 
@@ -77,12 +78,13 @@
         <h2>5 баллов - task 3</h2>
         <p>Выпуск продукции ткацкими цехами предприятия представлен в виде вектора V из 10 элементов.<br>
             Найти, сколько цехов предприятия выпустили продукции в объеме от 300 до 500 погонных метров.<br>
-            V = {600; 500; 300; 390; 640; 500; 500; 490; 270; 450)
-        </p>
-        <div class='wrap-item'><span>min</span> <input type="text" name="" id="task_3_min" value="300"></div>
-        <div class='wrap-item'><span>max</span> <input type="text" name="" id="task_3_max" value="500"></div>
-        <div class='wrap-item width100'><span>вектор V</span>
-            <input type="text" name="" id="task_3_input" value="600; 500; 300; 390; 640; 500; 500; 490; 270; 450">
+            V = {600; 500; 300; 390; 640; 500; 500; 490; 270; 450)</p>
+        <div id="task_3_listener">
+            <div class='wrap-item'><span>min</span> <input type="text" name="" id="task_3_min" value="300"></div>
+            <div class='wrap-item'><span>max</span> <input type="text" name="" id="task_3_max" value="500"></div>
+            <div class='wrap-item width100'><span>вектор V</span>
+                <input type="text" name="" id="task_3_input" value="600; 500; 300; 390; 640; 500; 500; 490; 270; 450">
+            </div>
         </div>
         <div id="task_3_div"></div>
 
@@ -112,7 +114,8 @@
                 task_3_div.innerHTML = (`
                 <p>Диапазон: ${min}...${max}<br>
                 Фильтруем массив элементов: ${strArr} (всего ${length} элементов)<br> 
-                `)
+                </p>`
+                )
             }
         </script>
 
@@ -159,7 +162,8 @@
                 <p>Фильтруем массив элементов: ${strArr} (всего ${length} элементов)<br>
                 Максимальный элемент: ${max} (кол-во: ${countMax})<br>
                 Минимальный элемент: ${min} (кол-во: ${countMin})<br>
-                `)
+                </p>`
+                )
             }
         </script>
 
@@ -173,7 +177,8 @@
         </p>
         <div class='wrap-item'><span>min</span> <input type="text" name="" id="task_5_min" value="0"></div>
         <div class='wrap-item width100'><span>вектора Р</span>
-            <input type="text" name="" id="task_5_input" value="20; 0; 30; 23; 34; 0; 10; 9; 27; 45; 0; 24; 35; 17; 29; 24; 16; 34; 0; 8">
+            <input type="text" name="" id="task_5_input"
+                value="20; 0; 30; 23; 34; 0; 10; 9; 27; 45; 0; 24; 35; 17; 29; 24; 16; 34; 0; 8">
         </div>
         <div id="task_5_div"></div>
 
@@ -201,7 +206,8 @@
                 task_5_div.innerHTML = (`
                 <p>Минимум: ${min}<br>
                 Фильтруем массив элементов: ${strArr} (всего ${length} элементов)<br> 
-                `)
+                </p>`
+                )
             }
         </script>
 
@@ -209,12 +215,55 @@
         <!-- task 6 -->
         <h2>6 баллов - task 6 </h2>
         <p>Написать программу проверки является ли число простым.</p>
+        <div class='wrap-item width100'><span>введите число или числа</span>
+            <input type="text" name="" id="task_6_input"
+                value="20; 0; 30; 23; 34; 0; 10; 9; 27; 45; 0; 24; 35; 17; 29; 24; 16; 34; 0; 8">
+        </div>
+        <div id="task_6_div"></div>
+
+        <script>
+
+            document.addEventListener("DOMContentLoaded", run_task_6)
+            task_6_input.addEventListener("change", run_task_6, false)
+
+            function run_task_6(number = task_6_input) {
+
+                const arr = task_6_input.value
+                    .replace(/,/g, '.')
+                    .split(/[^-0-9\.]/)
+                    .filter((item) => {
+                        return item != ''
+                    })
+                    .map(Number)
+                    .map(isPrime)
+                    .filter((item) => {
+                        return item != false
+                    })
+
+                function isPrime(number) {
+                    if (number !== 2) {
+                        if (number < 2 || number % 2 === 0) return false
+                        for (let i = 3; (i * i) <= number; i += 2) {
+                            if (number % 2 === 0) return false
+                        }
+                    }
+                    return number
+                }
+
+                const length = arr.length
+                const strArr = arr.join(', ')
+
+                if (arr.length === 0) task_6_div.innerHTML = (`<p>Простых чисел пока нет</p>`)
+                if (arr.length != 0) task_6_div.innerHTML = (`<p>У вас есть простые числа: ${strArr} (всего ${length} элементов)</p>`)
+            }
+        </script>
 
 
+        <!-- task 7 -->
         <h2>6 баллов - task 7 </h2>
-        <p>В последовательности вещественных чисел найти три элемента, ближайших больших по величине минимального.
-            Вывести
-            их на экран, отсортировав в натуральном порядке. Минимальный элемент также вывести на экран.</p>
+        <p>В последовательности вещественных чисел найти три элемента, ближайших больших по величине минимального.<br>
+            - Вывести их на экран, отсортировав в натуральном порядке.<br>
+            - Минимальный элемент также вывести на экран.</p>
 
         <h2>6 баллов - task 8 </h2>
         Дан набор из десяти целочисленных элементов. Найти количество элементов, содержащихся между первым и последним
@@ -251,9 +300,8 @@
         <h2>7 баллов - task 15</h2>
         Описать метод remove(A, N, k), осуществляющий удаление последних k столбцов вещественной матрицы A размера NхN
         (0 &#60; k &#60; N – 1). Матрица A, N и k — входные параметры. Новая матрица – выходной параметр. С помощью
-        этого
-        метода
-        осуществить удаление k1, k2, k3 столбцов из матриц x, y, z. размеров N1, N2, N3. Ссылкам на матрицы x, y, z
+        этого метода осуществить удаление k1, k2, k3 столбцов из матриц x, y, z. размеров N1, N2, N3. Ссылкам на матрицы
+        x, y, z
         присвоить значения результатов раААботы метода.
 
     </main>

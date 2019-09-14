@@ -14,10 +14,23 @@ main {
   max-width: 1024px;
   width: 100%;
   margin: 0 auto;
-  background-color: darkslategrey;
+  /* background-color: darkslategrey; */
   color: antiquewhite;
-  padding: 0 30px 60px;
+  /* padding: 0 30px 60px; */
   box-sizing: border-box;
+}
+
+.wrap-task {
+  background-color: darkslategrey;
+  padding: 30px;
+  margin-bottom: 40px;
+  border-radius: 5px;
+}
+
+h2 {
+  /* padding: 50px 0 5px 0; */
+  margin: 20px 0;
+  text-align: center;
 }
 
 input {
@@ -29,11 +42,6 @@ input {
   font-size: larger;
   border-radius: 5px;
   border-style: none;
-}
-
-h2 {
-  padding: 50px 0 5px 0;
-  text-align: center;
 }
 
 .formula {

@@ -20,250 +20,267 @@
 
 <body>
     <main>
-        <h2>5 баллов - task 1</h2>
-        Написать программу решения квадратного уравнения. Корни только вещественные. Квадратное уравнение – это
-        уравнение вида ax2 + bx + c = 0, где a не равно 0. Для решения квадратного уравнения можно использовать формулы:
-        <div class="formula">$$x_+=\frac{-b+\sqrt{b^2-4ac}}{2a}$$</div>
-        и
-        <div class="formula">$$x_-=\frac{-b+\sqrt{b^2-4ac}}{2a}$$</div>
-        где D = b2 -
-        4ac — дискриминант многочлена ax2 + bx + c. Если D > 0, то уравнение имеет два различных вещественных корня.
-        Если D = 0, то корень один.
-        Если D &#60; 0, то нет решений.
+        <!-- task 1 -->
+        <section class="wrap-task">
+            <h2>5 баллов - task 1</h2>
+            Написать программу решения квадратного уравнения. Корни только вещественные. Квадратное уравнение – это
+            уравнение вида ax2 + bx + c = 0, где a не равно 0. Для решения квадратного уравнения можно использовать
+            формулы:
+            <div class="formula">$$x_+=\frac{-b+\sqrt{b^2-4ac}}{2a}$$</div>
+            и
+            <div class="formula">$$x_-=\frac{-b+\sqrt{b^2-4ac}}{2a}$$</div>
+            где D = b2 -
+            4ac — дискриминант многочлена ax2 + bx + c. Если D > 0, то уравнение имеет два различных вещественных корня.
+            Если D = 0, то корень один.
+            Если D &#60; 0, то нет решений.
+        </section>
+
 
         <!-- task 2 -->
-        <h2>5 баллов - task 2</h2>
-        <p>Сведения о надбавках к окладу у работников предприятия представлены в виде вектора К из 20 элементов. <br>
-            Найти среднее арифметическое число работников, имеющих надбавку.<br>
-            К = {20; 0; 30; 20; 10; 0; 10; 0; 20; 40; 0; 20; 30; 10; 20; 20; 10; 30; 0; 20}
-        </p>
-        <div class='wrap-item width100'><span>вектор К</span> <input type="text" name="" id="task_2_input"
-                value="20; 0; 30, 20/ 10.1; 0; 11,2; 0; 20; 40; 0; 20; 30; 10; 20; 20; 10; 30; 0; 20">
-        </div>
-        <div id="task_2_div"></div>
+        <section class="wrap-task">
+            <h2>5 баллов - task 2</h2>
+            <p>Сведения о надбавках к окладу у работников предприятия представлены в виде вектора К из 20 элементов.
+                <br>
+                Найти среднее арифметическое число работников, имеющих надбавку.<br>
+                К = {20; 0; 30; 20; 10; 0; 10; 0; 20; 40; 0; 20; 30; 10; 20; 20; 10; 30; 0; 20}
+            </p>
+            <div class='wrap-item width100'><span>вектор К</span> <input type="text" name="" id="task_2_input"
+                    value="20; 0; 30, 20/ 10.1; 0; 11,2; 0; 20; 40; 0; 20; 30; 10; 20; 20; 10; 30; 0; 20">
+            </div>
+            <div id="task_2_div"></div>
 
-        <script>
-            document.addEventListener("DOMContentLoaded", run_task_2)
-            task_2_input.addEventListener("change", run_task_2, false)
+            <script>
+                document.addEventListener("DOMContentLoaded", run_task_2)
+                task_2_input.addEventListener("change", run_task_2, false)
 
-            function run_task_2() {
+                function run_task_2() {
+                    const arr = task_2_input.value
+                        .replace(/,/g, '.')
+                        .split(/[^-0-9\.]/)
+                        .filter((item) => {
+                            return item != ''
+                        })
+                        .map(Number)
+                        .filter(item => item > 0)
 
-                const arr = task_2_input.value
-                    .replace(/,/g, '.')
-                    .split(/[^-0-9\.]/)
-                    .filter((item) => {
-                        return item != ''
-                    })
-                    .map(Number)
-                    .filter(item => item > 0)
+                    const sum = Math.round(
+                        arr.reduce((accumulator, currentValue) => accumulator + currentValue)
+                        * 100) / 100
+                    const length = arr.length
+                    const average = Math.round(sum / length * 100) / 100
+                    const strArr = arr.join(', ')
 
-                const sum = Math.round(
-                    arr.reduce((accumulator, currentValue) => accumulator + currentValue)
-                    * 100) / 100
-                const length = arr.length
-                const average = Math.round(sum / length * 100) / 100
-                const strArr = arr.join(', ')
-
-                task_2_div.innerHTML = (`
+                    task_2_div.innerHTML = (`
                 <p>Фильтруем массив элементов: ${strArr} (всего ${length} элементов)<br>
                 Сумма всех элементов: ${sum}<br>
                 Средняя арифметическая надбавка ${average}
                 </p>`
-                )
-            }
-        </script>
+                    )
+                }
+            </script>
+        </section>
 
 
         <!-- task 3 -->
-        <h2>5 баллов - task 3</h2>
-        <p>Выпуск продукции ткацкими цехами предприятия представлен в виде вектора V из 10 элементов.<br>
-            Найти, сколько цехов предприятия выпустили продукции в объеме от 300 до 500 погонных метров.<br>
-            V = {600; 500; 300; 390; 640; 500; 500; 490; 270; 450)</p>
-        <div id="task_3_listener">
-            <div class='wrap-item'><span>min</span> <input type="text" name="" id="task_3_min" value="300"></div>
-            <div class='wrap-item'><span>max</span> <input type="text" name="" id="task_3_max" value="500"></div>
-            <div class='wrap-item width100'><span>вектор V</span>
-                <input type="text" name="" id="task_3_input" value="600; 500; 300; 390; 640; 500; 500; 490; 270; 450">
+        <section class="wrap-task">
+            <h2>5 баллов - task 3</h2>
+            <p>Выпуск продукции ткацкими цехами предприятия представлен в виде вектора V из 10 элементов.<br>
+                Найти, сколько цехов предприятия выпустили продукции в объеме от 300 до 500 погонных метров.<br>
+                V = {600; 500; 300; 390; 640; 500; 500; 490; 270; 450)</p>
+            <div id="task_3_listener">
+                <div class='wrap-item'><span>min</span> <input type="text" name="" id="task_3_min" value="300"></div>
+                <div class='wrap-item'><span>max</span> <input type="text" name="" id="task_3_max" value="500"></div>
+                <div class='wrap-item width100'><span>вектор V</span>
+                    <input type="text" name="" id="task_3_input"
+                        value="600; 500; 300; 390; 640; 500; 500; 490; 270; 450">
+                </div>
             </div>
-        </div>
-        <div id="task_3_div"></div>
+            <div id="task_3_div"></div>
 
-        <script>
-            document.addEventListener("DOMContentLoaded", run_task_3)
-            task_3_input.addEventListener("change", run_task_3, false)
-            task_3_min.addEventListener("change", run_task_3, false)
-            task_3_max.addEventListener("change", run_task_3, false)
+            <script>
+                document.addEventListener("DOMContentLoaded", run_task_3)
+                task_3_input.addEventListener("change", run_task_3, false)
+                task_3_min.addEventListener("change", run_task_3, false)
+                task_3_max.addEventListener("change", run_task_3, false)
 
-            function run_task_3() {
+                function run_task_3() {
 
-                const min = task_3_min.value
-                const max = task_3_max.value
-                const arr = task_3_input.value
-                    .replace(/,/g, '.')
-                    .split(/[^-0-9\.]/)
-                    .filter((item) => {
-                        return item != ''
-                    })
-                    .map(Number)
-                    .filter((item) => {
-                        if (item >= min & item <= max) return item
-                    })
+                    const min = task_3_min.value
+                    const max = task_3_max.value
+                    const arr = task_3_input.value
+                        .replace(/,/g, '.')
+                        .split(/[^-0-9\.]/)
+                        .filter((item) => {
+                            return item != ''
+                        })
+                        .map(Number)
+                        .filter((item) => {
+                            if (item >= min & item <= max) return item
+                        })
 
-                const strArr = arr.join(', ')
-                const length = arr.length
-                task_3_div.innerHTML = (`
+                    const strArr = arr.join(', ')
+                    const length = arr.length
+                    task_3_div.innerHTML = (`
                 <p>Диапазон: ${min}...${max}<br>
                 Фильтруем массив элементов: ${strArr} (всего ${length} элементов)<br> 
                 </p>`
-                )
-            }
-        </script>
-
+                    )
+                }
+            </script>
+        </section>
 
 
         <!-- task 4 -->
-        <h2>5 баллов - task 4</h2>
-        Индексы потребительских цен представлены в виде вектора из 15 элементов. Найти, сколько раз встречается
-        минимальный и максимальный элемент. P = {20; 45; 23; 34; 8; 27; 45; 24; 35; 17; 29; 45; 16; 34; 8}
-        <input type="text" name="" id="task_4_input" value="20; 45; 23; 34; 8; 27; 45; 24; 35; 17; 29; 45; 16; 34; 8 ">
-        <div id="task_4_div"></div>
+        <section class="wrap-task">
+            <h2>5 баллов - task 4</h2>
+            Индексы потребительских цен представлены в виде вектора из 15 элементов. Найти, сколько раз встречается
+            минимальный и максимальный элемент. P = {20; 45; 23; 34; 8; 27; 45; 24; 35; 17; 29; 45; 16; 34; 8}
+            <input type="text" name="" id="task_4_input"
+                value="20; 45; 23; 34; 8; 27; 45; 24; 35; 17; 29; 45; 16; 34; 8 ">
+            <div id="task_4_div"></div>
 
-        <script>
-            document.addEventListener("DOMContentLoaded", run_task_4)
-            task_4_input.addEventListener("change", run_task_4, false)
+            <script>
+                document.addEventListener("DOMContentLoaded", run_task_4)
+                task_4_input.addEventListener("change", run_task_4, false)
 
-            function run_task_4() {
+                function run_task_4() {
 
-                const arr = task_4_input.value
-                    .replace(/,/g, '.')
-                    .split(/[^-0-9\.]/)
-                    .filter((item) => {
-                        return item != ''
-                    })
-                    .map(Number)
+                    const arr = task_4_input.value
+                        .replace(/,/g, '.')
+                        .split(/[^-0-9\.]/)
+                        .filter((item) => {
+                            return item != ''
+                        })
+                        .map(Number)
 
-                let max = arr[0]
-                let min = arr[0]
-                for (const item of arr) {
-                    if (max < item) max = item
-                    if (min > item) min = item
-                }
+                    let max = arr[0]
+                    let min = arr[0]
+                    for (const item of arr) {
+                        if (max < item) max = item
+                        if (min > item) min = item
+                    }
 
-                let countMax = 0
-                let countMin = 0
-                for (const item of arr) {
-                    if (max == item) countMax++
-                    if (min == item) countMin++
-                }
+                    let countMax = 0
+                    let countMin = 0
+                    for (const item of arr) {
+                        if (max == item) countMax++
+                        if (min == item) countMin++
+                    }
 
-                const length = arr.length
-                const strArr = arr.join(', ')
-                task_4_div.innerHTML = (`
+                    const length = arr.length
+                    const strArr = arr.join(', ')
+                    task_4_div.innerHTML = (`
                 <p>Фильтруем массив элементов: ${strArr} (всего ${length} элементов)<br>
                 Максимальный элемент: ${max} (кол-во: ${countMax})<br>
                 Минимальный элемент: ${min} (кол-во: ${countMin})<br>
                 </p>`
-                )
-            }
-        </script>
-
+                    )
+                }
+            </script>
+        </section>
 
         <!-- task 5 -->
-        <h2>5 баллов - task 5</h2>
-        <p>Сведения о количестве проданных товаров каждым продавцом представлены в виде целочисленного вектора Р из 20
-            элементов. <br>
-            Найти количество продавцов, объем продаж у которых больше нуля. <br>
-            P = {20; 0; 30; 23; 34; 0; 10; 9; 27; 45; 0; 24; 35; 17; 29; 24; 16; 34; 0; 8} <br>
-        </p>
-        <div class='wrap-item'><span>min</span> <input type="text" name="" id="task_5_min" value="0"></div>
-        <div class='wrap-item width100'><span>вектора Р</span>
-            <input type="text" name="" id="task_5_input"
-                value="20; 0; 30; 23; 34; 0; 10; 9; 27; 45; 0; 24; 35; 17; 29; 24; 16; 34; 0; 8">
-        </div>
-        <div id="task_5_div"></div>
+        <section class="wrap-task">
+            <h2>5 баллов - task 5</h2>
+            <p>Сведения о количестве проданных товаров каждым продавцом представлены в виде целочисленного вектора Р из
+                20
+                элементов. <br>
+                Найти количество продавцов, объем продаж у которых больше нуля. <br>
+                P = {20; 0; 30; 23; 34; 0; 10; 9; 27; 45; 0; 24; 35; 17; 29; 24; 16; 34; 0; 8} <br>
+            </p>
+            <div class='wrap-item'><span>min</span> <input type="text" name="" id="task_5_min" value="0"></div>
+            <div class='wrap-item width100'><span>вектора Р</span>
+                <input type="text" name="" id="task_5_input"
+                    value="20; 0; 30; 23; 34; 0; 10; 9; 27; 45; 0; 24; 35; 17; 29; 24; 16; 34; 0; 8">
+            </div>
+            <div id="task_5_div"></div>
 
-        <script>
-            document.addEventListener("DOMContentLoaded", run_task_5)
-            task_5_input.addEventListener("change", run_task_5, false)
-            task_5_min.addEventListener("change", run_task_5, false)
+            <script>
+                document.addEventListener("DOMContentLoaded", run_task_5)
+                task_5_input.addEventListener("change", run_task_5, false)
+                task_5_min.addEventListener("change", run_task_5, false)
 
-            function run_task_5() {
+                function run_task_5() {
 
-                const min = task_5_min.value
-                const arr = task_5_input.value
-                    .replace(/,/g, '.')
-                    .split(/[^-0-9\.]/)
-                    .filter((item) => {
-                        return item != ''
-                    })
-                    .map(Number)
-                    .filter((item) => {
-                        if (item >= min) return item
-                    })
+                    const min = task_5_min.value
+                    const arr = task_5_input.value
+                        .replace(/,/g, '.')
+                        .split(/[^-0-9\.]/)
+                        .filter((item) => {
+                            return item != ''
+                        })
+                        .map(Number)
+                        .filter((item) => {
+                            if (item >= min) return item
+                        })
 
-                const strArr = arr.join(', ')
-                const length = arr.length
-                task_5_div.innerHTML = (`
+                    const strArr = arr.join(', ')
+                    const length = arr.length
+                    task_5_div.innerHTML = (`
                 <p>Минимум: ${min}<br>
                 Фильтруем массив элементов: ${strArr} (всего ${length} элементов)<br> 
                 </p>`
-                )
-            }
-        </script>
-
+                    )
+                }
+            </script>
+        </section>
 
         <!-- task 6 -->
-        <h2>6 баллов - task 6 </h2>
-        <p>Написать программу проверки является ли число простым.</p>
-        <div class='wrap-item width100'><span>введите число или числа</span>
-            <input type="text" name="" id="task_6_input"
-                value="20; 0; 30; 23; 34; 0; 10; 9; 27; 45; 0; 24; 35; 17; 29; 24; 16; 34; 0; 8">
-        </div>
-        <div id="task_6_div"></div>
+        <section class="wrap-task">
+            <h2>6 баллов - task 6 </h2>
+            <p>Написать программу проверки является ли число простым.</p>
+            <div class='wrap-item width100'><span>введите число или числа</span>
+                <input type="text" name="" id="task_6_input"
+                    value="20; 0; 30; 23; 34; 0; 10; 9; 27; 45; 0; 24; 35; 17; 29; 24; 16; 34; 0; 8">
+            </div>
+            <div id="task_6_div"></div>
 
-        <script>
+            <script>
 
-            document.addEventListener("DOMContentLoaded", run_task_6)
-            task_6_input.addEventListener("change", run_task_6, false)
+                document.addEventListener("DOMContentLoaded", run_task_6)
+                task_6_input.addEventListener("change", run_task_6, false)
 
-            function run_task_6(number = task_6_input) {
+                function run_task_6(number = task_6_input) {
 
-                const arr = task_6_input.value
-                    .replace(/,/g, '.')
-                    .split(/[^-0-9\.]/)
-                    .filter((item) => {
-                        return item != ''
-                    })
-                    .map(Number)
-                    .map(isPrime)
-                    .filter((item) => {
-                        return item != false
-                    })
+                    const arr = task_6_input.value
+                        .replace(/,/g, '.')
+                        .split(/[^-0-9\.]/)
+                        .filter((item) => {
+                            return item != ''
+                        })
+                        .map(Number)
+                        .map(isPrime)
+                        .filter((item) => {
+                            return item != false
+                        })
 
-                function isPrime(number) {
-                    if (number !== 2) {
-                        if (number < 2 || number % 2 === 0) return false
-                        for (let i = 3; (i * i) <= number; i += 2) {
-                            if (number % 2 === 0) return false
+                    function isPrime(number) {
+                        if (number !== 2) {
+                            if (number < 2 || number % 2 === 0) return false
+                            for (let i = 3; (i * i) <= number; i += 2) {
+                                if (number % 2 === 0) return false
+                            }
                         }
+                        return number
                     }
-                    return number
+
+                    const length = arr.length
+                    const strArr = arr.join(', ')
+
+                    if (arr.length === 0) task_6_div.innerHTML = (`<p>Простых чисел пока нет</p>`)
+                    if (arr.length != 0) task_6_div.innerHTML = (`<p>У вас есть простые числа: ${strArr} (всего ${length} элементов)</p>`)
                 }
-
-                const length = arr.length
-                const strArr = arr.join(', ')
-
-                if (arr.length === 0) task_6_div.innerHTML = (`<p>Простых чисел пока нет</p>`)
-                if (arr.length != 0) task_6_div.innerHTML = (`<p>У вас есть простые числа: ${strArr} (всего ${length} элементов)</p>`)
-            }
-        </script>
-
+            </script>
+        </section>
 
         <!-- task 7 -->
-        <h2>6 баллов - task 7 </h2>
-        <p>В последовательности вещественных чисел найти три элемента, ближайших больших по величине минимального.<br>
-            - Вывести их на экран, отсортировав в натуральном порядке.<br>
-            - Минимальный элемент также вывести на экран.</p>
+        <section class="wrap-task">
+            <h2>6 баллов - task 7 </h2>
+            <p>В последовательности вещественных чисел найти три элемента, ближайших больших по величине
+                минимального.<br>
+                - Вывести их на экран, отсортировав в натуральном порядке.<br>
+                - Минимальный элемент также вывести на экран.</p>
+        </section>
 
         <h2>6 баллов - task 8 </h2>
         Дан набор из десяти целочисленных элементов. Найти количество элементов, содержащихся между первым и последним

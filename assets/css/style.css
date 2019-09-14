@@ -1,7 +1,12 @@
 *,
-html {
+html,
+a {
   font-family: "Marmelad", sans-serif;
   margin: 0;
+}
+
+a{
+  color: inherit;
 }
 
 body {

@@ -179,6 +179,7 @@
             </script>
         </section>
 
+
         <!-- task 5 -->
         <section class="wrap-task">
             <h2>5 баллов - task 5</h2>
@@ -225,13 +226,17 @@
             </script>
         </section>
 
+
         <!-- task 6 -->
         <section class="wrap-task">
             <h2>6 баллов - task 6 </h2>
-            <p>Написать программу проверки является ли число простым.</p>
+            <p>Написать программу проверки является ли число простым.
+                <a href="https://ru.wikipedia.org/wiki/%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%8B%D1%85_%D1%87%D0%B8%D1%81%D0%B5%D0%BB"
+                    target="_blank" rel="noopener noreferrer">( cписок простых чисел )</a>
+            </p>
             <div class='wrap-item width100'><span>введите число или числа</span>
                 <input type="text" name="" id="task_6_input"
-                    value="20; 0; 30; 23; 34; 0; 10; 9; 27; 45; 0; 24; 35; 17; 29; 24; 16; 34; 0; 8">
+                    value="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20">
             </div>
             <div id="task_6_div"></div>
 
@@ -254,14 +259,24 @@
                             return item != false
                         })
 
-                    function isPrime(number) {
-                        if (number !== 2) {
-                            if (number < 2 || number % 2 === 0) return false
-                            for (let i = 3; (i * i) <= number; i += 2) {
-                                if (number % 2 === 0) return false
+                    function isPrime(num) {
+                        if (num >= 0) {
+                            switch (num) {
+                                case 0:
+                                case 1:
+                                    return false
+                                case 2:
+                                    return num
+                                default:
+                                    for (var i = 2; i < num; i++) {
+                                        if (num % i === 0)
+                                            return false
+                                    }
+                                    return num
                             }
+                        } else {
+                            return false
                         }
-                        return number
                     }
 
                     const length = arr.length
@@ -273,6 +288,7 @@
             </script>
         </section>
 
+
         <!-- task 7 -->
         <section class="wrap-task">
             <h2>6 баллов - task 7 </h2>
@@ -283,6 +299,7 @@
         </section>
 
 
+        <!-- task 8 -->
         <section class="wrap-task">
             <h2>6 баллов - task 8 </h2>
             Дан набор из десяти целочисленных элементов. Найти количество элементов, содержащихся между первым и

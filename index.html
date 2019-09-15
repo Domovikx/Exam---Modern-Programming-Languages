@@ -133,8 +133,10 @@
         <!-- task 4 -->
         <section class="wrap-task">
             <h2>5 баллов - task 4</h2>
-            Индексы потребительских цен представлены в виде вектора из 15 элементов. Найти, сколько раз встречается
-            минимальный и максимальный элемент. P = {20; 45; 23; 34; 8; 27; 45; 24; 35; 17; 29; 45; 16; 34; 8}
+            <p>Индексы потребительских цен представлены в виде вектора из 15 элементов. <br>
+                Найти, сколько раз встречается минимальный и максимальный элемент. <br>
+                P = {20; 45; 23; 34; 8; 27; 45; 24; 35; 17; 29; 45; 16; 34; 8}
+            </p>
             <input type="text" name="" id="task_4_input"
                 value="20; 45; 23; 34; 8; 27; 45; 24; 35; 17; 29; 45; 16; 34; 8 ">
             <div id="task_4_div"></div>
@@ -366,19 +368,70 @@
         </section>
 
 
+        <!-- task 9 -->
         <section class="wrap-task">
             <h2>6 баллов - task 9</h2>
-            Написать программу, которая сортирует последовательность чисел по убыванию. При разработке программы можно
-            использовать классы-коллекции.
+            <p>Написать программу, которая сортирует последовательность чисел по убыванию. <br>
+                При разработке программы можно использовать классы-коллекции.
+            </p>
+
+            <div class='wrap-item width100'><span>введите число или числа</span>
+                <input type="text" name="" id="task_9_input">
+            </div>
+            <div id="task_9_div"></div>
+
+
+            <script>
+                task_9_input.addEventListener("change", run_task_9, false)
+                function run_task_9() {
+                    const arr = task_9_input.value
+                        .replace(/,/g, '.')
+                        .split(/[^-0-9\.]/)
+                        .filter((item) => {
+                            return item != ''
+                        })
+                        .map(Number)
+
+                    // сделаем быструю сортировку
+                    // можно былобы и сделать через sort(), но так скучно
+                    function qsort(arr) {
+                        if (arr.length < 2) return arr
+                        const pivot = arr[0]
+                        const more = arr.filter(value => value < pivot)
+                        const equal = arr.filter(value => value === pivot)
+                        const smaller = arr.filter(value => value > pivot)
+                        return [...qsort(more), pivot, ...qsort(smaller)]
+                    }
+
+                    task_9_div.innerHTML = (
+                        `<p>Ваш диапазон находится между элементами: ${qsort(arr).reverse().join(', ')}</p>`
+                    )
+                }
+
+                document.addEventListener("DOMContentLoaded", getRamdomArr)
+                function getRamdomArr() {
+                    ((min = 0, max = 100, length = 10, tens = 100) => {
+                        const arr = []
+                        for (let i = 0; i < length; i++) {
+                            const num = (Math.floor(Math.random() * ((max * tens) - (min * tens) + 1)) + min * tens) / tens
+                            arr.push(num)
+                        }
+                        document.getElementById('task_9_input').value = arr.join(' ')
+                    })()
+                }
+                document.addEventListener("DOMContentLoaded", run_task_9)
+            </script>
         </section>
 
 
+        <!-- task 10 -->
         <section class="wrap-task">
             <h2>6 баллов - task 10</h2>
             Проверить, является ли квадратная матрица симметричной относительно побочной диагонали.
         </section>
 
 
+        <!-- task 11 -->
         <section class="wrap-task">
             <h2>7 баллов - task 11</h2>
             Ввести с консоли строку, содержащую набор слов, разделённых пробелами. Найти и вывести на экран слова, для
@@ -386,6 +439,7 @@
         </section>
 
 
+        <!-- task 12 -->
         <section class="wrap-task">
             <h2>7 баллов - task 12</h2>
             В последовательности целых чисел определить сумму четных положительных чисел и произведение отрицательных,
@@ -394,23 +448,25 @@
         </section>
 
 
+        <!-- task 13 -->
         <section class="wrap-task">
             <h2>7 баллов - task 13</h2>
             В последовательности вещественных чисел поменять местами соседние четные и нечетные по номеру элементы.
-            Действия
-            по определению четности индекса и перестановки двух элементов реализовать с использованием методов с
+            Действия по определению четности индекса и перестановки двух элементов реализовать с использованием методов
+            с
             параметрами.
         </section>
 
 
+        <!-- task 14 -->
         <section class="wrap-task">
             <h2>7 баллов - task 14</h2>
             Найти седловые точки в матрице (седловая точка – это число, которое одновременно является максимальным
-            элементом
-            в соответствующем столбце матрицы и минимальным элементом в соответствующей строке матрицы.)
+            элементом в соответствующем столбце матрицы и минимальным элементом в соответствующей строке матрицы.)
         </section>
 
 
+        <!-- task 15 -->
         <section class="wrap-task">
             <h2>7 баллов - task 15</h2>
             Описать метод remove(A, N, k), осуществляющий удаление последних k столбцов вещественной матрицы A размера

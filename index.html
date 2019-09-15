@@ -314,10 +314,7 @@
             <div id="task_8_div"></div>
 
             <script>
-
-                document.addEventListener("DOMContentLoaded", getRamdomArr)
                 task_8_input.addEventListener("change", run_task_8, false)
-
                 function run_task_8() {
                     const arr = task_8_input.value
                         .replace(/,/g, '.')
@@ -329,16 +326,34 @@
                     // ! Надо поправить код, ввод не работает если поставить разделение через (,) 
                     console.log('arr :', arr)
 
-                    let minFirst = arr[0]
-                    let minSecond = undefined
-                    let indexFirst = undefined
-                    let indexSecond = undefined
-                    for (let index = 0; index < arr.length; index++) {
-                        if (minFirst > arr[i]) {
+                    const arrSort = [...arr].sort(((a, b) => a - b))
+                    console.log('arrSort ', arrSort)
+                    let minFifrstIndex = arr.indexOf(arrSort[0])
+                    let minSecondIndex = arr.indexOf(arrSort[1])
+                    if (minFifrstIndex > minSecondIndex) [minFifrstIndex, minSecondIndex] = [minSecondIndex, minFifrstIndex]
 
-                        }
+                    console.log('minFifrstIndex :', minFifrstIndex)
+                    console.log('minSecondIndex :', minSecondIndex)
+
+                    if (!(arrSort[0] < arrSort[1] < arrSort[2])) {
+                        task_8_div.innerHTML = (`<p>Опачки. У вас проблема с элементами: ${arrSort[0]} ${arrSort[1]} ${arrSort[2]}</p>`)
+                    }
+                    else if (minFifrstIndex === minSecondIndex - 1) {
+                        task_8_div.innerHTML = (`<p>Минимальные элементы ${arrSort[0]} и ${arrSort[1]} идут последовательно. <br>
+                            Выводим: 0</p>`)
+                    }
+                    else {
+                        const resultArr = arr.slice(minFifrstIndex + 1, minSecondIndex)
+                        console.log(resultArr)
+                        task_8_div.innerHTML = (
+                            `<p>Ваш диапазон находится между элементами: ${arrSort[0]} и ${arrSort[1]}<br>
+                            кол-во элементов между: ${resultArr.length} <br>
+                            ваш диапазон: ${arr[minFifrstIndex]} ( ${resultArr.join(', ')} ) ${arr[minSecondIndex]}
+                            </p>`)
                     }
                 }
+
+                document.addEventListener("DOMContentLoaded", getRamdomArr)
                 function getRamdomArr() {
                     ((min = 0, max = 100, length = 9, tens = 100) => {
                         const arr = []

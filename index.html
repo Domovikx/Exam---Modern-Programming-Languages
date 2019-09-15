@@ -298,6 +298,50 @@
                 минимального.<br>
                 - Вывести их на экран, отсортировав в натуральном порядке.<br>
                 - Минимальный элемент также вывести на экран.</p>
+            <div class='wrap-item width100'><span>введите число или числа</span>
+                <input type="text" name="" id="task_7_input">
+            </div>
+            <div id="task_7_div"></div>
+
+
+            <script>
+                task_7_input.addEventListener("change", run_task_7, false)
+                function run_task_7() {
+                    const arr = task_7_input.value
+                        .replace(/,/g, '.')
+                        .split(/[^-0-9\.]/)
+                        .filter((item) => {
+                            return item != ''
+                        })
+                        .map(Number)
+                        .sort(((a, b) => a - b))
+                    // ! Надо поправить код, ввод не работает если поставить разделение через (,) 
+                    console.log('arr :', arr)
+
+                    if (arr.length < 4) {
+                        task_7_div.innerHTML = (
+                            `<p>Ваш диапазон меньше 4</p>`)
+                    } else if (arr.length >= 4) {
+                        task_7_div.innerHTML = (
+                            `<p>Ваш диапазон значений, начиная с минимального элемента: ${arr.slice(0, 4).join(', ')}
+                                </p>`)
+                    }
+                }
+
+                document.addEventListener("DOMContentLoaded", getRamdomArr)
+                function getRamdomArr() {
+                    ((min = 0, max = 100, length = 10, tens = 100) => {
+                        const arr = []
+                        for (let i = 0; i < length; i++) {
+                            const num = (Math.floor(Math.random() * ((max * tens) - (min * tens) + 1)) + min * tens) / tens
+                            arr.push(num)
+                        }
+                        document.getElementById('task_7_input').value = arr.join(' ')
+                    })()
+                }
+                document.addEventListener("DOMContentLoaded", run_task_7)
+                    // Можно улучшить, добавить кнопку рандом
+            </script>
         </section>
 
 

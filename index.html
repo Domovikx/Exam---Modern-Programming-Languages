@@ -189,7 +189,7 @@
                 Найти количество продавцов, объем продаж у которых больше нуля. <br>
                 P = {20; 0; 30; 23; 34; 0; 10; 9; 27; 45; 0; 24; 35; 17; 29; 24; 16; 34; 0; 8} <br>
             </p>
-            <div class='wrap-item'><span>min</span> <input type="text" name="" id="task_5_min" value="0"></div>
+            <div class='wrap-item'><span>min</span> <input type="text" name="" id="task_5_min" value="25"></div>
             <div class='wrap-item width100'><span>вектора Р</span>
                 <input type="text" name="" id="task_5_input"
                     value="20; 0; 30; 23; 34; 0; 10; 9; 27; 45; 0; 24; 35; 17; 29; 24; 16; 34; 0; 8">
@@ -245,7 +245,7 @@
                 document.addEventListener("DOMContentLoaded", run_task_6)
                 task_6_input.addEventListener("change", run_task_6, false)
 
-                function run_task_6(number = task_6_input) {
+                function run_task_6() {
 
                     const arr = task_6_input.value
                         .replace(/,/g, '.')
@@ -302,11 +302,54 @@
         <!-- task 8 -->
         <section class="wrap-task">
             <h2>6 баллов - task 8 </h2>
-            Дан набор из десяти целочисленных элементов. Найти количество элементов, содержащихся между первым и
-            последним
-            минимальным. Если минимальных элементов всего 2, и они идут подряд, то вывести 0. Если в наборе имеется
-            единственный минимальный элемент, вывести
-            на экран соответствующее уведомление.
+            <p>Дан набор из десяти целочисленных элементов. <br>
+                - Найти количество элементов, содержащихся между первым и последним минимальным. <br>
+                - Если минимальных элементов всего 2, и они идут подряд, то вывести 0. <br>
+                - Если в наборе имеется единственный минимальный элемент, вывести на экран соответствующее уведомление.
+            </p>
+            <div class='wrap-item width100'><span>введите число или числа</span>
+                <input type="text" name="" id="task_8_input"
+                    value="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20">
+            </div>
+            <div id="task_8_div"></div>
+
+            <script>
+
+                document.addEventListener("DOMContentLoaded", getRamdomArr)
+                task_8_input.addEventListener("change", run_task_8, false)
+
+                function run_task_8() {
+                    const arr = task_8_input.value
+                        .replace(/,/g, '.')
+                        .split(/[^-0-9\.]/)
+                        .filter((item) => {
+                            return item != ''
+                        })
+                        .map(Number)
+                    // ! Надо поправить код, ввод не работает если поставить разделение через (,) 
+                    console.log('arr :', arr)
+
+                    let minFirst = arr[0]
+                    let minSecond = undefined
+                    let indexFirst = undefined
+                    let indexSecond = undefined
+                    for (let index = 0; index < arr.length; index++) {
+                        if (minFirst > arr[i]) {
+
+                        }
+                    }
+                }
+                function getRamdomArr() {
+                    ((min = 0, max = 100, length = 9, tens = 100) => {
+                        const arr = []
+                        for (let i = 0; i < length; i++) {
+                            const num = (Math.floor(Math.random() * ((max * tens) - (min * tens) + 1)) + min * tens) / tens
+                            arr.push(num)
+                        }
+                        document.getElementById('task_8_input').value = arr.join(' ')
+                    })()
+                }
+            </script>
         </section>
 
 

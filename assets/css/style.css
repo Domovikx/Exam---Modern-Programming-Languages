@@ -5,6 +5,17 @@ a {
   margin: 0;
 }
 
+.btn {
+  color: darkslategray;
+  background-color: antiquewhite;
+  font-family: inherit;
+  font-size: larger;
+  padding: 10px;
+  border-radius: 7px;
+  border: 2px solid;
+  font-weight: bold;
+}
+
 a {
   color: inherit;
 }

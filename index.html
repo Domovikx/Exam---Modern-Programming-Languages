@@ -324,16 +324,12 @@
                         })
                         .map(Number)
                     // ! Надо поправить код, ввод не работает если поставить разделение через (,) 
-                    console.log('arr :', arr)
 
                     const arrSort = [...arr].sort(((a, b) => a - b))
-                    console.log('arrSort ', arrSort)
+
                     let minFifrstIndex = arr.indexOf(arrSort[0])
                     let minSecondIndex = arr.indexOf(arrSort[1])
                     if (minFifrstIndex > minSecondIndex) [minFifrstIndex, minSecondIndex] = [minSecondIndex, minFifrstIndex]
-
-                    console.log('minFifrstIndex :', minFifrstIndex)
-                    console.log('minSecondIndex :', minSecondIndex)
 
                     if (!(arrSort[0] < arrSort[1] < arrSort[2])) {
                         task_8_div.innerHTML = (`<p>Опачки. У вас проблема с элементами: ${arrSort[0]} ${arrSort[1]} ${arrSort[2]}</p>`)
@@ -344,7 +340,6 @@
                     }
                     else {
                         const resultArr = arr.slice(minFifrstIndex + 1, minSecondIndex)
-                        console.log(resultArr)
                         task_8_div.innerHTML = (
                             `<p>Ваш диапазон находится между элементами: ${arrSort[0]} и ${arrSort[1]}<br>
                             кол-во элементов между: ${resultArr.length} <br>

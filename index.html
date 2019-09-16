@@ -34,19 +34,36 @@
             Если D = 0, то корень один.
             Если D &#60; 0, то нет решений.
 
-            <form name="frm">
-                <div class='wrap-item'>Введите параметр а: <input id="task_1_a" type="text" name="a"></div>
-                <div class='wrap-item'>Введите параметр b: <input id="task_1_b" type="text" name="b"></div>
-                <div class='wrap-item'>Введите параметр c: <input id="task_1_c" type="text" name="c"></div>
-                <button onclick="run_task_1()" class="btn">Рандом</button>
-            </form>
+            <div class='wrap-item'>
+                Введите параметр а:
+                <input id="task_1_a" type="text" name="">
+            </div>
+            <div class='wrap-item'>
+                Введите параметр b:
+                <input id="task_1_b" type="text" name="">
+            </div>
+            <div class='wrap-item'>
+                Введите параметр c:
+                <input id="task_1_c" type="text" name="">
+            </div>
+            <button id="task_1_btn" class="btn">Рандом</button>
+
             <div id="task_1_div"></div>
 
             <script>
+
+                task_1_btn.addEventListener("click", getRamdomArr)
+                task_1_btn.addEventListener("click", run_task_1)
+
+                task_1_a.addEventListener("change", run_task_1, false)
+                task_1_b.addEventListener("change", run_task_1, false)
+                task_1_c.addEventListener("change", run_task_1, false)
+
                 function run_task_1() {
-                    let a = parseFloat(frm.a.value)
-                    let b = parseFloat(frm.b.value)
-                    let c = parseFloat(frm.c.value)
+
+                    const a = parseFloat(task_1_a.value)
+                    const b = parseFloat(task_1_b.value)
+                    const c = parseFloat(task_1_c.value)
                     let x1, x2, d
 
                     d = b * b - 4 * a * c
@@ -58,11 +75,10 @@
 
                     if (d < 0) {
                         task_1_div.innerHTML = (task_1_div.innerHTML + `<p>Уравнение не имеет действительных корней</p>`)
-                        console.log('1')
                         return
                     }
-                    if (d == 0) { task_1_div.innerHTML = (task_1_div.innerHTML + `<p>Уравнение имеет 1 корень</p>`); console.log('2') }
-                    if (d > 0) { task_1_div.innerHTML = (task_1_div.innerHTML + `<p>Уравнение имеет 2 кореня</p>`); console.log('3') }
+                    if (d == 0) { task_1_div.innerHTML = (task_1_div.innerHTML + `<p>Уравнение имеет 1 корень</p>`) }
+                    if (d > 0) { task_1_div.innerHTML = (task_1_div.innerHTML + `<p>Уравнение имеет 2 кореня</p>`) }
 
                     x1 = (-b - Math.sqrt(d)) / (2 * a)
                     x2 = (-b + Math.sqrt(d)) / (2 * a)

@@ -30,7 +30,8 @@
             <ul>
                 <li><a href="https://github.com/Domovikx/Exam---Modern-Programming-Languages" target="_blank"
                         rel="noopener noreferrer">Репозиторий</a></li>
-                <li><a href="https://github.com/Domovikx/Exam---Modern-Programming-Languages/tree/master/assets/docs" target="_blank" rel="noopener noreferrer">Современные языки программирования (
+                <li><a href="https://github.com/Domovikx/Exam---Modern-Programming-Languages/tree/master/assets/docs"
+                        target="_blank" rel="noopener noreferrer">Современные языки программирования (
                         документы )</a></li>
             </ul>
         </section>
@@ -554,7 +555,116 @@
         <!-- task 10 -->
         <section class="wrap-task">
             <h2>6 баллов - task 10</h2>
-            Проверить, является ли квадратная матрица симметричной относительно побочной диагонали.
+            <p> Проверить, является ли квадратная матрица симметричной относительно побочной диагонали.
+            </p>
+            <script>
+                
+                run_task_10()
+                function run_task_10() {
+
+                    main()
+                    function main() {
+
+                        const arr = getMatrix()
+                        console.log('arr :', arr)
+
+                        const matrixSize = 4
+                        const n = matrixSize
+                        let symmetry = true
+
+                        for (let i = 0; i < n; i++) {
+                            for (let j = 0; j < n; j++) {
+                                if (arr[i][j] != arr[n - 1 - j][n - 1 - i]) {
+                                    symmetry = false
+                                    console.log('symmetry = false 1')
+                                    break
+                                }
+                            }
+                            if (!symmetry) {
+                                console.log('symmetry = false 2')
+                                break
+                            }
+                        }
+                    }
+
+                    function getMatrix(matrixSize = 4) {
+                        // const matrixSize = 4
+                        const arr = [[0, 1, 3, 4], [1, 0, 4, 5], [3, 4, 0, 6], [4, 5, 6, 0]]
+                        return arr
+                    }
+
+                    // function symmetryCheck() {
+
+                    // }
+
+
+
+                }
+
+
+                // namespace CyberForum_C_sharp {
+                //     class Program {
+                //         static void Main(string[] args) {
+                //             const int n = 4;
+                //             int[,] arr = new int[n, n] { { 0, 1, 3, 4 }, { 1, 0, 4, 5 } , { 3, 4, 0, 6 }, { 4, 5, 6, 0 } };
+                //             if (F(arr))
+                //                 Console.Write("Yes!");
+                //             else
+                //                 Console.Write("No!");
+                //             Console.Read();
+                //         }
+                //         static bool F(int[,] arr) {
+                //             for (int i = 0; i < arr.GetLength(0); ++i)
+                //             for (int j = 0; j < arr.GetLength(1); ++j)
+                //             if (arr[i, j] != arr[j, i])
+                //                 return false;
+                //             return true;
+                //         }
+                //     }
+                // }
+
+
+                // #include "stdafx.h"
+                // #include < iostream >
+
+                //     using namespace std;
+
+                // void main()
+                // {
+                //     setlocale(LC_ALL, "Russian");
+                //     int n;
+                //     cout << "Введите размер матрицы: ";
+                //     cin >> n;
+                //     cout << "Введите элементы матрицы " << endl;
+                //     int ** a=new int * [n];
+                //     for (int i = 0; i < n; i++)
+                //     {
+                //         a[i] = new int[n];
+                //         for (int j = 0; j < n; j++)
+                //         {
+                //             cin >> a[i][j];
+                //         }
+                //     }
+                //     bool sim = true;
+                //     for (int i = 0; i < n; i++)
+                //     {
+                //         for (int j = 0; j < n; j++)
+                //         {
+                //             if (a[i][j] != a[n - 1 - j][n - 1 - i]) {
+                //                 sim = false;
+                //                 break;
+                //             }
+                //         }
+                //         if (!sim) {
+                //             break;
+                //         }
+                //     }
+                //     cout << ((sim) ? "Матрица симметрична относительно побочной диагонали" :
+                //         "Матрица не симметрична относительно побочной диагонали") << endl;
+                //     system("pause");
+                // }
+
+            </script>
         </section>
 
 

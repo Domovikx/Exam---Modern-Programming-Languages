@@ -14,6 +14,13 @@ a {
   border-radius: 7px;
   border: 2px solid;
   font-weight: bold;
+  margin-left: -2px;
+  margin-top: 5px;
+  transition: background 0.2s linear;
+}
+
+.btn:hover{
+  background-color: lightgreen;
 }
 
 a {

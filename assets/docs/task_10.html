@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!--task 10 -->
+    <section class="wrap-task">
+        <h2>6 баллов - task 10</h2>
+        Проверить, является ли квадратная матрица симметричной относительно побочной диагонали.
+    </section>
+
+    <script>
+
+        matrix()
+        function matrix() {
+
+
+            main()
+            function main() {
+                console.log('testArrTrue :', symmetryCheck(testArrTrue()))
+                console.log('testArrFalse :', symmetryCheck(testArrFalse()))
+
+                const arr = getMatris()
+                console.log('arr :', arr)
+
+                const symmetry = symmetryCheck(arr)
+                console.log('symmetry :', symmetry)
+            }
+
+
+            function symmetryCheck(arr) {
+                for (let i = 0; i < arr.length; i++) {
+                    for (let j = 0; j < arr.length; j++) {
+                        const firstElement = arr[i][j]
+                        const secondElement = arr[arr.length - j - 1][arr.length - i - 1]
+
+                        if (firstElement != secondElement) return false
+                    }
+                }
+                return true
+            }
+
+
+            function getMatris() {
+                const arr = [
+                    [11, 12, 13, 99],
+                    [21, 22, 99, 13],
+                    [31, 99, 22, 12],
+                    [99, 31, 21, 11]]
+                return arr
+            }
+
+
+            // tests
+            function testArrTrue() {
+                return arr = [
+                    [11, 12, 13, 99],
+                    [21, 22, 99, 13],
+                    [31, 99, 22, 12],
+                    [99, 31, 21, 11]]
+            }
+            function testArrFalse() {
+                return arr = [
+                    [11, 12, 13, 14],
+                    [21, 22, 23, 23],
+                    [31, 32, 33, 34],
+                    [41, 42, 43, 44]]
+            }
+        }
+    </script>
+
+
+</body>
+
+</html>

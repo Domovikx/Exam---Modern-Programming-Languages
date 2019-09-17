@@ -557,114 +557,63 @@
             <h2>6 баллов - task 10</h2>
             <p> Проверить, является ли квадратная матрица симметричной относительно побочной диагонали.
             </p>
-            <script>
-                
-                run_task_10()
-                function run_task_10() {
+            <div id='task_10_div' class="task_10_div">
 
-                    main()
-                    function main() {
+                <script>
+                    run_task_10()
+                    function run_task_10() {
 
-                        const arr = getMatrix()
-                        console.log('arr :', arr)
+                        const testMatrixFalse = [
+                            [11, 12, 13, 14],
+                            [21, 22, 23, 23],
+                            [31, 32, 33, 34],
+                            [41, 42, 43, 44]]
 
-                        const matrixSize = 4
-                        const n = matrixSize
-                        let symmetry = true
+                        const testMatrixTrue = [
+                            [11, 12, 13, 00],
+                            [21, 22, 00, 13],
+                            [31, 00, 22, 12],
+                            [00, 31, 21, 11]]
 
-                        for (let i = 0; i < n; i++) {
-                            for (let j = 0; j < n; j++) {
-                                if (arr[i][j] != arr[n - 1 - j][n - 1 - i]) {
-                                    symmetry = false
-                                    console.log('symmetry = false 1')
-                                    break
+
+                        main(testMatrixTrue)
+                        function main(arr = testMatrixTrue) {
+
+                            const element = document.getElementById('task_10_div')
+                            element.innerHTML = `<div class='wrap-table'>${createMatrixTagTable(arr)}</div>`
+                            element.innerHTML += `<p>Ответ: 
+                            Матрица ${symmetrySideDiagonal(arr) ? 'является' : 'НЕ является'} 
+                            симметричной относительно побочной диагонали</p>`
+                        }
+
+                        function symmetrySideDiagonal(arr) {
+                            for (let i = 0; i < arr.length; i++) {
+                                for (let j = 0; j < arr.length; j++) {
+                                    const firstElement = arr[i][j]
+                                    const secondElement = arr[arr.length - j - 1][arr.length - i - 1]
+
+                                    if (firstElement != secondElement) return false
                                 }
                             }
-                            if (!symmetry) {
-                                console.log('symmetry = false 2')
-                                break
+                            return true
+                        }
+
+                        function createMatrixTagTable(arr = testMatrixTrue) {
+
+                            let str = ''
+                            for (let i = 0; i < arr.length; i++) {
+                                if (i === 0) str += `<table>`
+                                for (let j = 0; j < arr.length; j++) {
+                                    if (j === 0) str += `<tr>`
+                                    str += `<td>${arr[i][j]}</td>`
+                                    if (j === arr.length - 1) str += `</tr>`
+                                }
+                                if (i === arr.length - 1) str += `</table>`
                             }
+                            return str
                         }
                     }
-
-                    function getMatrix(matrixSize = 4) {
-                        // const matrixSize = 4
-                        const arr = [[0, 1, 3, 4], [1, 0, 4, 5], [3, 4, 0, 6], [4, 5, 6, 0]]
-                        return arr
-                    }
-
-                    // function symmetryCheck() {
-
-                    // }
-
-
-
-                }
-
-
-                // namespace CyberForum_C_sharp {
-                //     class Program {
-                //         static void Main(string[] args) {
-                //             const int n = 4;
-                //             int[,] arr = new int[n, n] { { 0, 1, 3, 4 }, { 1, 0, 4, 5 } , { 3, 4, 0, 6 }, { 4, 5, 6, 0 } };
-                //             if (F(arr))
-                //                 Console.Write("Yes!");
-                //             else
-                //                 Console.Write("No!");
-                //             Console.Read();
-                //         }
-                //         static bool F(int[,] arr) {
-                //             for (int i = 0; i < arr.GetLength(0); ++i)
-                //             for (int j = 0; j < arr.GetLength(1); ++j)
-                //             if (arr[i, j] != arr[j, i])
-                //                 return false;
-                //             return true;
-                //         }
-                //     }
-                // }
-
-
-                // #include "stdafx.h"
-                // #include < iostream >
-
-                //     using namespace std;
-
-                // void main()
-                // {
-                //     setlocale(LC_ALL, "Russian");
-                //     int n;
-                //     cout << "Введите размер матрицы: ";
-                //     cin >> n;
-                //     cout << "Введите элементы матрицы " << endl;
-                //     int ** a=new int * [n];
-                //     for (int i = 0; i < n; i++)
-                //     {
-                //         a[i] = new int[n];
-                //         for (int j = 0; j < n; j++)
-                //         {
-                //             cin >> a[i][j];
-                //         }
-                //     }
-                //     bool sim = true;
-                //     for (int i = 0; i < n; i++)
-                //     {
-                //         for (int j = 0; j < n; j++)
-                //         {
-                //             if (a[i][j] != a[n - 1 - j][n - 1 - i]) {
-                //                 sim = false;
-                //                 break;
-                //             }
-                //         }
-                //         if (!sim) {
-                //             break;
-                //         }
-                //     }
-                //     cout << ((sim) ? "Матрица симметрична относительно побочной диагонали" :
-                //         "Матрица не симметрична относительно побочной диагонали") << endl;
-                //     system("pause");
-                // }
-
-            </script>
+                </script>
         </section>
 
 

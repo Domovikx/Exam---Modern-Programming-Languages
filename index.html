@@ -620,8 +620,42 @@
         <!-- task 11 -->
         <section class="wrap-task">
             <h2>7 баллов - task 11</h2>
-            Ввести с консоли строку, содержащую набор слов, разделённых пробелами. Найти и вывести на экран слова, для
-            которых последняя буква одного слова совпадает с первой буквой другого слова.
+            <p>Ввести с консоли строку, содержащую набор слов, разделённых пробелами. Найти и вывести на экран слова,
+                для которых последняя буква одного слова совпадает с первой буквой другого слова.
+            </p>
+            <textarea name="" id="task-11-textarea" cols="task-11-textarea"
+                rows="5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio optio in error alias tenetur modi doloribus dicta fuga amet. Perferendis repellendus voluptatem adipisci obcaecati magni est alias unde vero quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. In repellendus pariatur consequuntur odio ipsum quas vero ut? Quo, voluptatibus, perspiciatis facilis consequatur qui sunt quaerat nostrum deserunt fugiat reprehenderit facere. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius, asperiores porro praesentium magnam similique perspiciatis, sed nisi veritatis dicta veniam illum, repudiandae aspernatur. Eius dolorem beatae delectus quo voluptatibus repudiandae?</textarea>
+            <div id="task-11-div"></div>
+
+            <script>
+                const task_11_textarea = document.getElementById('task-11-textarea')
+                task_11_textarea.addEventListener("click", run_task_11, false)
+                task_11_textarea.addEventListener("keydown", run_task_11, false)
+
+                run_task_11()
+                function run_task_11() {
+
+                    main()
+                    function main() {
+                        const textarea = document.getElementById('task-11-textarea')
+                        const div = document.getElementById('task-11-div')
+                        const arrWords = textarea.value.split(' ')
+                        div.innerHTML = `<p>Пары слов: ${coupleWords(arrWords)}</p>`
+                    }
+
+                    function coupleWords(array) {
+                        let coupleWords = ''
+                        for (let i = 0; i < array.length - 1; i++) {
+                            const firstWord = array[i]
+                            const secondWord = array[i + 1]
+                            const firstLetter = firstWord.charAt(firstWord.length - 1).toLocaleLowerCase()
+                            const secondLetter = secondWord.charAt(0).toLocaleLowerCase()
+                            if (firstLetter === secondLetter) coupleWords += `${firstWord}_${secondWord} `
+                        }
+                        return coupleWords
+                    }
+                }
+            </script>
         </section>
 
 

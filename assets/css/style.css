@@ -96,6 +96,11 @@ input {
   width: 100%;
 }
 
+textarea {
+  width: 100% !important;
+  box-sizing: border-box;
+}
+
 /* media */
 @media (max-width: 1199px) {
   .wrap-task {

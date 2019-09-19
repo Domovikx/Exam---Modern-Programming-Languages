@@ -273,7 +273,8 @@
             <p>Сведения о количестве проданных товаров каждым продавцом представлены в виде целочисленного вектора Р из
                 20
                 элементов. <br>
-                Найти количество продавцов, объем продаж у которых больше или равно <input class="input-in-text" type="text" name="" id="task_5_min" value="25">. <br>
+                Найти количество продавцов, объем продаж у которых больше или равно <input class="input-in-text"
+                    type="text" name="" id="task_5_min" value="25">. <br>
                 Не учитывать - 0. <br>
                 P = {20; 0; 30; 23; 34; 0; 10; 9; 27; 45; 0; 24; 35; 17; 29; 24; 16; 34; 0; 8} <br>
             </p>
@@ -803,8 +804,86 @@
         <!-- task 14 -->
         <section class="wrap-task">
             <h2>7 баллов - task 14</h2>
-            Найти седловые точки в матрице (седловая точка – это число, которое одновременно является максимальным
-            элементом в соответствующем столбце матрицы и минимальным элементом в соответствующей строке матрицы.)
+            <p>Найти седловые точки в матрице (седловая точка – это число, которое одновременно является максимальным
+                элементом в соответствующем столбце матрицы и минимальным элементом в соответствующей строке
+                матрицы.)<br>
+                Матрица:
+                <input class="input-in-text" type="text" name="" id="task_14_input_i" value="4">
+                <input class="input-in-text" type="text" name="" id="task_14_input_j" value="5">
+            </p>
+            <div id="task_14_div"></div>
+
+            <script>
+                function task_14() {
+                    const element = document.getElementById('task_14_div')
+                    const matrixI = document.getElementById('task_14_input_i')
+                    const matrixJ = document.getElementById('task_14_input_j')
+                    matrixI.addEventListener("keyup", main)
+                    matrixJ.addEventListener("keyup", main)
+                    task_14_div.addEventListener("keyup", () => (console.log('object')))
+
+                    main()
+                    function main() {
+
+                        const i = matrixI.value
+                        const j = matrixJ.value
+                        const arr = matrixGenerator(i, j)
+
+                        element.innerHTML = `<div class='wrap-table table-input'>${createMatrixTagTable(arr, i, j)}</div>`
+                    }
+
+                    getMatrix()
+                    function getMatrix() {
+
+                        const table = element.firstElementChild.firstElementChild.firstElementChild
+                        const rows = table.rows.length
+                        const cols = table.rows[0].cells.length
+                        const arr = []
+
+                        for (let i = 0; i < rows; i++) {
+                            arr[i] = []
+                            for (let j = 0; j < cols; j++) {
+                                arr[i][j] = Number(table.rows[i].cells[j].firstElementChild.value)
+                            }
+                        }
+                        return arr
+                    }
+
+                    function matrixGenerator(matrixI, matrixJ) {
+                        const arr = []
+                        for (let i = 0; i < matrixI; i++) {
+                            arr[i] = []
+                            for (let j = 0; j < matrixJ; j++) {
+                                arr[i][j] = randomNumber(min = 0, max = 10, length = 10, tens = 1)
+                            }
+                        }
+                        // const arr = matrixGenerator(i, j)
+                        // element.innerHTML = `<div class='wrap-table table-input'>${createMatrixTagTable(arr, matrixI, matrixJ)}</div>`
+                        return arr
+                    }
+
+                    function createMatrixTagTable(arr, matrixI = 10, matrixJ = 10) {
+                        let str = ''
+                        for (let i = 0; i < matrixI; i++) {
+                            if (i === 0) str += `<table>`
+                            for (let j = 0; j < matrixJ; j++) {
+                                if (j === 0) str += `<tr>`
+                                str += `<td><input value=${arr[i][j]}></td>`
+                                if (j === matrixJ - 1) str += `</tr>`
+                            }
+                            if (i === matrixI - 1) str += `</table>`
+                        }
+                        return str
+                    }
+
+                    function randomNumber(min = 0, max = 10, length = 10, tens = 1) {
+                        return (Math.floor(Math.random() * ((max * tens) - (min * tens) + 1)) + min * tens) / tens
+                    }
+                }
+
+                document.addEventListener("DOMContentLoaded", task_14)
+
+            </script>
         </section>
 
 

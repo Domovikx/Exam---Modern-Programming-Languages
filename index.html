@@ -662,9 +662,85 @@
         <!-- task 12 -->
         <section class="wrap-task">
             <h2>7 баллов - task 12</h2>
-            В последовательности целых чисел определить сумму четных положительных чисел и произведение отрицательных,
-            меньших -10. Действия по определению суммы, произведения, проверки четности и отрицательности реализовать с
-            использованием методов с параметрами.
+            <p>В последовательности целых чисел определить: <br>
+                - сумму четных положительных чисел. <br>
+                - произведение отрицательных чисел, ( числа меньше
+                <input class='input-in-text' type="text" id="task-12-input-less-number" value="-10"
+                    onkeydown="this.style.width = ((this.value.length +4) * 8) + 'px';"> ). <br>
+                Действия по определению суммы, произведения, проверки четности и
+                отрицательности реализовать с использованием методов с параметрами.
+            </p>
+            <div class='wrap-item width100'><span>введите число или числа</span>
+                <input type="text" name="" id="task-12-input">
+            </div>
+            <div id="task-12-div"></div>
+
+            <script>
+                const task_12_input = document.getElementById('task-12-input')
+                const task_12_input_min = document.getElementById('task-12-input-less-number')
+                task_12_input.addEventListener("change", run_task_12, false)
+                task_12_input_min.addEventListener("keyup", run_task_12, false)
+
+                function run_task_12() {
+
+                    main()
+                    function main() {
+                        const input = task_12_input
+                        const div = document.getElementById('task-12-div')
+                        const min = Number(document.getElementById('task-12-input-less-number').value)
+                        const arr = getArray(task_12_input.value)
+
+                        const evenNumbers = getEvenNumbers(arr)
+                        div.innerHTML = `<p>Массив четных чисел: ${evenNumbers.arrNumbers.join(', ')}.<br> 
+                            Cумма: ${evenNumbers.sum}.</p>`
+
+                        const negativeNumbers = getNegativeNumbers(arr, min)
+                        div.innerHTML += `<p>Массив четных чисел: ${negativeNumbers.arrNumbers.join(', ')}.<br>
+                            Произведение чисел: ${negativeNumbers.poductNumbers}.</p>`
+                    }
+
+                    function getArray(str) {
+                        const arr = str
+                            .replace(/,/g, '.')
+                            .split(/[^-0-9\.]/)
+                            .filter((item) => {
+                                return item != ''
+                            })
+                        return arr
+                    }
+
+                    function getEvenNumbers(arr) {
+                        const arrNumbers = [...arr]
+                            .map(Number)
+                            .filter(item => item > 0)
+                            .filter(item => !(item % 2))
+                        const sum = arrNumbers.reduce((sum, item) => sum + item)
+                        return { arrNumbers, sum }
+                    }
+
+                    function getNegativeNumbers(arr, min) {
+                        const arrNumbers = [...arr]
+                            .map(Number)
+                            .filter(item => item < min)
+                        const poductNumbers = arrNumbers.reduce((sum, item) => sum * item)
+                        return { arrNumbers, poductNumbers }
+                    }
+                }
+
+                setRandomInput(document.getElementById('task-12-input'))
+                function setRandomInput(elementInput = document.getElementById('task-12-input')) {
+                    elementInput.value = getRamdomArr(-100, 100, 30, 1).join(' ')
+                    function getRamdomArr(min = 0, max = 100, arrLength = 10, tens = 100) {
+                        const arr = []
+                        for (let i = 0; i < arrLength; i++) {
+                            const num = (Math.floor(Math.random() * ((max * tens) - (min * tens) + 1)) + min * tens) / tens
+                            arr.push(num)
+                        }
+                        return arr
+                    }
+                }
+                run_task_12()
+            </script>
         </section>
 
 

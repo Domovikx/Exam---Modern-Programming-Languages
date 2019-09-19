@@ -818,21 +818,29 @@
                     const element = document.getElementById('task_14_div')
                     const matrixI = document.getElementById('task_14_input_i')
                     const matrixJ = document.getElementById('task_14_input_j')
-                    matrixI.addEventListener("keyup", main)
-                    matrixJ.addEventListener("keyup", main)
-                    task_14_div.addEventListener("keyup", () => (console.log('object')))
+                    matrixI.addEventListener("keyup", createNewMatrix)
+                    matrixJ.addEventListener("keyup", createNewMatrix)
+                    element.addEventListener("keyup", main)
 
-                    main()
                     function main() {
+                        const i = matrixI.value
+                        const j = matrixJ.value
+                        const arr = getMatrix()
+                        console.log('arr :', arr)
+                    }
+
+                    createNewMatrix()
+                    function createNewMatrix() {
 
                         const i = matrixI.value
                         const j = matrixJ.value
                         const arr = matrixGenerator(i, j)
 
                         element.innerHTML = `<div class='wrap-table table-input'>${createMatrixTagTable(arr, i, j)}</div>`
+
+                        main()
                     }
 
-                    getMatrix()
                     function getMatrix() {
 
                         const table = element.firstElementChild.firstElementChild.firstElementChild
@@ -857,8 +865,6 @@
                                 arr[i][j] = randomNumber(min = 0, max = 10, length = 10, tens = 1)
                             }
                         }
-                        // const arr = matrixGenerator(i, j)
-                        // element.innerHTML = `<div class='wrap-table table-input'>${createMatrixTagTable(arr, matrixI, matrixJ)}</div>`
                         return arr
                     }
 

@@ -808,9 +808,9 @@
                 элементом в соответствующем столбце матрицы и минимальным элементом в соответствующей строке
                 матрицы.)<br>
                 Матрица:
-                <input class="input-in-text" type="text" name="" id="task_14_input_i" value="3">
-                <input class="input-in-text" type="text" name="" id="task_14_input_j" value="3">
-                <button class="btn btn-long" id = 'task_14_btn'>Рандом</button>
+                <input class="input-in-text" type="text" name="" id="task_14_input_i" value="6">
+                <input class="input-in-text" type="text" name="" id="task_14_input_j" value="5">
+                <button class="btn btn-long" id='task_14_btn'>Рандом</button>
             </p>
             <div id="task_14_div"></div>
             <div id="task_14_div_answer"></div>
@@ -828,7 +828,7 @@
                     matrixI.addEventListener("keyup", eventInputIJ)
                     matrixJ.addEventListener("keyup", eventInputIJ)
                     element.addEventListener("keyup", eventElementRun)
- 
+                   
                     let currentArray = []
                     let saddlePointsArr = []
 
@@ -845,24 +845,33 @@
                         answer()
                     }
 
+                    function disableBtn(second = 3) {
+                        btn.disabled = true
+                        setTimeout(function () {
+                            btn.disabled = false
+                        }, second * 1000)
+                    }
+
                     function answer() {
                         const arr = [...currentArray]
                         const saddlePoints = [...saddlePointsArr]
 
                         const divAnswer = document.getElementById('task_14_div_answer')
+                        const table = element.firstElementChild.firstElementChild.firstElementChild
 
                         let mes = ''
-                        saddlePoints.length > 0 ?
-                            mes = 'Обнаружены седловые точки!' :
+                        if (saddlePoints.length > 0) {
+                            mes = 'Обнаружены седловые точки!'
+                            for (let i = 0; i < saddlePoints.length; i++) {
+                                const row = saddlePoints[i].i
+                                const col = saddlePoints[i].j
+                                table.rows[row].cells[col].firstElementChild.classList.add('bg-lightgreen')
+                            }
+                            disableBtn(2)
+                        } else {
                             mes = 'В этой матрице пока нет седловых точек, попробуйте изменить значения.'
-                        divAnswer.innerHTML = (mes)
-
-                        const table = element.firstElementChild.firstElementChild.firstElementChild
-                        for (let i = 0; i < saddlePoints.length; i++) {
-                            const row = saddlePoints[i].i
-                            const col = saddlePoints[i].j
-                            table.rows[row].cells[col].firstElementChild.classList.add('bg-lightgreen')                            
                         }
+                        divAnswer.innerHTML = (mes)
                     }
 
 
@@ -972,6 +981,7 @@
                     function randomNumber(min = 0, max = 10, length = 10, tens = 1) {
                         return (Math.floor(Math.random() * ((max * tens) - (min * tens) + 1)) + min * tens) / tens
                     }
+                    eventInputIJ()
                 }
 
                 document.addEventListener("DOMContentLoaded", task_14)

@@ -828,11 +828,12 @@
                     matrixI.addEventListener("keyup", eventInputIJ)
                     matrixJ.addEventListener("keyup", eventInputIJ)
                     element.addEventListener("keyup", eventElementRun)
-                   
+
                     let currentArray = []
                     let saddlePointsArr = []
 
                     function eventInputIJ() {
+
                         createNewMatrix()
                         getMatrix()
                         saddlePoints()
@@ -858,6 +859,13 @@
 
                         const divAnswer = document.getElementById('task_14_div_answer')
                         const table = element.firstElementChild.firstElementChild.firstElementChild
+
+                        // так лучше не делать
+                        for (let i = 0; i < arr.length; i++) {
+                            for (let j = 0; j < arr[i].length; j++) {
+                                table.rows[i].cells[j].firstElementChild.classList.remove('bg-lightgreen')
+                            }
+                        }
 
                         let mes = ''
                         if (saddlePoints.length > 0) {
@@ -999,7 +1007,7 @@
             этого метода осуществить удаление k1, k2, k3 столбцов из матриц x, y, z. размеров N1, N2, N3. Ссылкам на
             матрицы
             x, y, z
-            присвоить значения результатов раААботы метода.
+            присвоить значения результатов работы метода.
         </section>
 
     </main>

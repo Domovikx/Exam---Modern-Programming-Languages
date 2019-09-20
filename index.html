@@ -820,12 +820,19 @@
                     const matrixJ = document.getElementById('task_14_input_j')
                     matrixI.addEventListener("keyup", createNewMatrix)
                     matrixJ.addEventListener("keyup", createNewMatrix)
-                    element.addEventListener("keyup", main)
+                    element.addEventListener("keyup", getMatrix)
+                    element.addEventListener("keyup", saddlePoints)
+                    let currentArray = []
 
                     function main() {
                         const i = matrixI.value
                         const j = matrixJ.value
                         const arr = getMatrix()
+                        console.log('arr :', arr)
+                    }
+
+                    function saddlePoints() {
+                        const arr = [...currentArray]
                         console.log('arr :', arr)
                     }
 
@@ -838,7 +845,7 @@
 
                         element.innerHTML = `<div class='wrap-table table-input'>${createMatrixTagTable(arr, i, j)}</div>`
 
-                        main()
+                        getMatrix()
                     }
 
                     function getMatrix() {
@@ -854,6 +861,9 @@
                                 arr[i][j] = Number(table.rows[i].cells[j].firstElementChild.value)
                             }
                         }
+                        currentArray = [...arr]
+                        // console.log('arr :', arr)
+
                         return arr
                     }
 
@@ -865,7 +875,7 @@
                                 arr[i][j] = randomNumber(min = 0, max = 10, length = 10, tens = 1)
                             }
                         }
-                        return arr
+                        return currentArr = arr
                     }
 
                     function createMatrixTagTable(arr, matrixI = 10, matrixJ = 10) {

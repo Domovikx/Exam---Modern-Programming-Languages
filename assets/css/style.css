@@ -91,19 +91,19 @@ input {
   border-collapse: collapse;
 }
 .wrap-table td {
-  border: 1px solid;
+  border: 0;
   margin: 0;
   padding: 10px;
 }
 
 .table-input td {
-  padding: 0px;
+  padding: 1px;
 }
 .table-input input {
   width: 50px;
   text-align: center;
-  background-color: inherit;
-  color: inherit;
+  /* background-color: inherit; */
+  /* color: inherit; */
 }
 
 .width100 {

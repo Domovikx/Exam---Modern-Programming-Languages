@@ -812,9 +812,13 @@
                 <input class="input-in-text" type="text" name="" id="task_14_input_j" value="3">
             </p>
             <div id="task_14_div"></div>
+            <div id="task_14_div_answer"></div>
 
             <script>
                 function task_14() {
+
+                    // ! Сделать Ограничитель матрицы 30х10
+
                     const element = document.getElementById('task_14_div')
                     const matrixI = document.getElementById('task_14_input_i')
                     const matrixJ = document.getElementById('task_14_input_j')
@@ -822,14 +826,51 @@
                     matrixJ.addEventListener("keyup", createNewMatrix)
                     element.addEventListener("keyup", getMatrix)
                     element.addEventListener("keyup", saddlePoints)
+                    element.addEventListener("keyup", answer)
                     let currentArray = []
+                    let saddlePointsArr = []
 
-                    function main() {
-                        const i = matrixI.value
-                        const j = matrixJ.value
-                        const arr = getMatrix()
-                        // console.log('arr :', arr)
+                    // function main() {
+                    //     const i = matrixI.value
+                    //     const j = matrixJ.value
+                    //     const arr = getMatrix()
+                    //     // console.log('arr :', arr)
+                    // }
+
+                    function answer() {
+                        const arr = [...currentArray]
+                        const saddlePoints = [...saddlePointsArr]
+                        // console.log('answer :')
+                        console.log('arr :', arr)
+                        console.log('saddlePoints :', saddlePoints)
+
+                        const divAnswer = document.getElementById('task_14_div_answer')
+
+                        let mes = ''
+                        saddlePoints.length > 0 ?
+                            mes = 'Обнаружены седловые точки!' :
+                            mes = 'В этой матрице пока нет седловых точек, попробуйте изменить значения.'
+                        divAnswer.innerHTML = (mes)
+
+                        const table = element.firstElementChild.firstElementChild.firstElementChild
+                        const rows = table.rows.length
+                        const cols = table.rows[0].cells.length
+                        // const arr = []
+
+                        // for (let i = 0; i < rows; i++) {
+                        //     arr[i] = []
+                        //     for (let j = 0; j < cols; j++) {
+                        //         arr[i][j] = Number(table.rows[i].cells[j].firstElementChild.value)
+                        //     }
+                        // }
+                        // currentArray = [...arr]
+                        // // console.log('arr :', arr)
+
+                        // return arr
+
+
                     }
+
 
                     function saddlePoints() {
                         const arr = [...currentArray]
@@ -879,6 +920,7 @@
                             }
                         }
 
+                        saddlePointsArr = arrSaddlePoints
                     }
 
                     createNewMatrix()

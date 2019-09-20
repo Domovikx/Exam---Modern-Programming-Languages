@@ -1001,15 +1001,113 @@
         <!-- task 15 -->
         <section class="wrap-task">
             <h2>7 баллов - task 15</h2>
-            Описать метод remove(A, N, k), осуществляющий удаление последних k столбцов вещественной матрицы A размера
-            NхN
-            (0 &#60; k &#60; N – 1). Матрица A, N и k — входные параметры. Новая матрица – выходной параметр. С помощью
-            этого метода осуществить удаление k1, k2, k3 столбцов из матриц x, y, z. размеров N1, N2, N3. Ссылкам на
-            матрицы
-            x, y, z
-            присвоить значения результатов работы метода.
-        </section>
+            <p>Описать метод remove(A, N, k), осуществляющий удаление последних k столбцов вещественной матрицы A
+                размера NхN (0 &#60; k &#60; N – 1). <br>
+                Матрица A, N и k — входные параметры. <br>
+                Новая матрица – выходной параметр. <br>
+                С помощью этого метода осуществить удаление k1, k2, k3 столбцов из матриц x, y, z. размеров N1, N2, N3.
+                <br>
+                Ссылкам на матрицы x, y, z присвоить значения результатов работы метода.<br>
+                Матрица:
+                <input class="input-in-text" type="text" name="" id="task_15_input_i" value="6">
+                <input class="input-in-text" type="text" name="" id="task_15_input_j" value="6">
+                <button class="btn btn-long" id='task_15_btn'>Рандом</button>
+                Можно удалить: Столбец
+                <input class="input-in-text" type="text" name="" id="task_15_input_del_col" value="2">
+                <button class="btn btn-long" id='task_15_btn_del_col'>Удалить</button>
+            </p>
+            <div id="task_15_div"></div>
+            <div id="task_15_div_answer"></div>
 
+            <script>
+                function task_15() {
+                    const inputI = document.getElementById('task_15_input_i')
+                    const inputJ = document.getElementById('task_15_input_j')
+                    const btn = document.getElementById('task_15_btn')
+                    const task_15_div = document.getElementById('task_15_div')
+                    const inputDelCol = document.getElementById('task_15_input_del_col')
+                    const btnDel = document.getElementById('task_15_btn_del_col')
+
+                    inputI.addEventListener("keyup", changeInput)
+                    inputJ.addEventListener("keyup", changeInput)
+                    btn.addEventListener("click", changeInput)
+                    document.addEventListener("DOMContentLoaded", changeInput)
+
+                    btnDel.addEventListener("click", delCol)
+
+                    function delCol() {
+                        const col = Number(inputDelCol.value) - 1
+                        const oldArr = getMatrix()
+                        const newArr = [...oldArr]
+
+                        for (let i = 0; i < newArr.length; i++) {
+                            newArr[i].splice(col, 1)
+                        }
+
+                        const tetTable = createMatrixTagTable(newArr, newArr.length, newArr[0].length)
+                        task_15_div.innerHTML = `<div class='wrap-table table-input'>
+                        ${tetTable} 
+                        </div>`
+                    }
+
+
+                    function getMatrix() {
+                        const table = document.getElementById('task_15_table')
+
+                        const rows = table.rows.length
+                        const cols = table.rows[0].cells.length
+                        const arr = []
+
+                        for (let i = 0; i < rows; i++) {
+                            arr[i] = []
+                            for (let j = 0; j < cols; j++) {
+                                arr[i][j] = Number(table.rows[i].cells[j].firstElementChild.value)
+                            }
+                        }
+
+                        return arr
+                    }
+
+                    function changeInput() {
+                        const matrixI = Number(inputI.value)
+                        const matrixJ = Number(inputJ.value)
+                        const arr = matrixGenerator(matrixI, matrixJ)
+                        task_15_div.innerHTML = `<div class='wrap-table table-input'>
+                        ${createMatrixTagTable(arr, matrixI, matrixJ)} 
+                        </div>`
+                    }
+
+                    function matrixGenerator(matrixI, matrixJ) {
+                        const arr = []
+                        for (let i = 0; i < matrixI; i++) {
+                            arr[i] = []
+                            for (let j = 0; j < matrixJ; j++) {
+                                arr[i][j] = randomNumber(min = 0, max = 10, length = 10, tens = 1)
+                            }
+                        }
+                        return arr
+                    }
+
+                    function createMatrixTagTable(arr, matrixI = 10, matrixJ = 10) {
+                        let str = ''
+                        for (let i = 0; i < matrixI; i++) {
+                            if (i === 0) str += `<table id='task_15_table' class='task_15_table'>`
+                            for (let j = 0; j < matrixJ; j++) {
+                                if (j === 0) str += `<tr>`
+                                str += `<td class='td-noborder'><input value=${arr[i][j]}></td>`
+                                if (j === matrixJ - 1) str += `</tr>`
+                            }
+                            if (i === matrixI - 1) str += `</table>`
+                        }
+                        return str
+                    }
+                    function randomNumber(min = 0, max = 10, length = 10, tens = 1) {
+                        return (Math.floor(Math.random() * ((max * tens) - (min * tens) + 1)) + min * tens) / tens
+                    }
+                }
+                task_15()
+            </script>
+        </section>
     </main>
 </body>
 

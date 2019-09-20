@@ -824,18 +824,16 @@
                     const matrixJ = document.getElementById('task_14_input_j')
                     matrixI.addEventListener("keyup", createNewMatrix)
                     matrixJ.addEventListener("keyup", createNewMatrix)
-                    element.addEventListener("keyup", getMatrix)
-                    element.addEventListener("keyup", saddlePoints)
-                    element.addEventListener("keyup", answer)
+                    element.addEventListener("keyup", eventElementRun)
+ 
                     let currentArray = []
                     let saddlePointsArr = []
 
-                    // function main() {
-                    //     const i = matrixI.value
-                    //     const j = matrixJ.value
-                    //     const arr = getMatrix()
-                    //     // console.log('arr :', arr)
-                    // }
+                    function eventElementRun() {
+                        getMatrix()
+                        saddlePoints()
+                        answer()
+                    }
 
                     function answer() {
                         const arr = [...currentArray]
@@ -933,6 +931,8 @@
                         element.innerHTML = `<div class='wrap-table table-input'>${createMatrixTagTable(arr, i, j)}</div>`
 
                         getMatrix()
+                        saddlePoints()
+                        answer()
                     }
 
                     function getMatrix() {

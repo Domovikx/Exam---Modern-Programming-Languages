@@ -808,8 +808,8 @@
                 элементом в соответствующем столбце матрицы и минимальным элементом в соответствующей строке
                 матрицы.)<br>
                 Матрица:
-                <input class="input-in-text" type="text" name="" id="task_14_input_i" value="4">
-                <input class="input-in-text" type="text" name="" id="task_14_input_j" value="5">
+                <input class="input-in-text" type="text" name="" id="task_14_input_i" value="3">
+                <input class="input-in-text" type="text" name="" id="task_14_input_j" value="3">
             </p>
             <div id="task_14_div"></div>
 
@@ -828,12 +828,57 @@
                         const i = matrixI.value
                         const j = matrixJ.value
                         const arr = getMatrix()
-                        console.log('arr :', arr)
+                        // console.log('arr :', arr)
                     }
 
                     function saddlePoints() {
                         const arr = [...currentArray]
-                        console.log('arr :', arr)
+                        // console.log('arr :', arr)
+
+                        const minI = []
+                        const maxJ = []
+
+                        const arrObjMin = [] //{}
+                        const arrObjMax = [] //{}
+                        const arrSaddlePoints = [] //{}
+                        const rows = matrixI.value
+                        const cols = matrixJ.value
+
+                        // находим данные для arrObjMin
+                        for (let i = 0; i < rows; i++) {
+                            let min = arr[i][0]
+
+                            for (let j = 0; j < cols; j++) {
+                                const element = arr[i][j]
+                                if (element < min) min = element
+                            }
+                            for (let j = 0; j < cols; j++) {
+                                const element = arr[i][j]
+                                if (element === min) arrObjMin.push({ min, i, j })
+                            }
+                        }
+                        // находим данные для arrObjMax
+                        for (let j = 0; j < rows; j++) {
+                            let max = arr[0][j]
+                            for (let i = 0; i < rows; i++) {
+                                const element = arr[i][j]
+                                if (element > max) max = element
+                            }
+                            for (let i = 0; i < rows; i++) {
+                                const element = arr[i][j]
+                                if (element === max) arrObjMax.push({ max, i, j })
+                            }
+                        }
+
+                        // arrSaddlePoints
+                        for (let i = 0; i < arrObjMin.length; i++) {
+                            for (let j = 0; j < arrObjMax.length; j++) {
+                                const firstElement = arrObjMin[i].min
+                                const secondElement = arrObjMax[j].max
+                                if (firstElement === secondElement) arrSaddlePoints.push(arrObjMin[i])
+                            }
+                        }
+
                     }
 
                     createNewMatrix()

@@ -822,12 +822,19 @@
                     const element = document.getElementById('task_14_div')
                     const matrixI = document.getElementById('task_14_input_i')
                     const matrixJ = document.getElementById('task_14_input_j')
-                    matrixI.addEventListener("keyup", createNewMatrix)
-                    matrixJ.addEventListener("keyup", createNewMatrix)
+                    matrixI.addEventListener("keyup", eventInputIJ)
+                    matrixJ.addEventListener("keyup", eventInputIJ)
                     element.addEventListener("keyup", eventElementRun)
  
                     let currentArray = []
                     let saddlePointsArr = []
+
+                    function eventInputIJ() {
+                        createNewMatrix()
+                        getMatrix()
+                        saddlePoints()
+                        answer()
+                    }
 
                     function eventElementRun() {
                         getMatrix()
@@ -872,7 +879,6 @@
 
                     function saddlePoints() {
                         const arr = [...currentArray]
-                        // console.log('arr :', arr)
 
                         const minI = []
                         const maxJ = []
@@ -929,10 +935,6 @@
                         const arr = matrixGenerator(i, j)
 
                         element.innerHTML = `<div class='wrap-table table-input'>${createMatrixTagTable(arr, i, j)}</div>`
-
-                        getMatrix()
-                        saddlePoints()
-                        answer()
                     }
 
                     function getMatrix() {
@@ -949,7 +951,6 @@
                             }
                         }
                         currentArray = [...arr]
-                        // console.log('arr :', arr)
 
                         return arr
                     }

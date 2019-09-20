@@ -848,9 +848,6 @@
                     function answer() {
                         const arr = [...currentArray]
                         const saddlePoints = [...saddlePointsArr]
-                        // console.log('answer :')
-                        console.log('arr :', arr)
-                        console.log('saddlePoints :', saddlePoints)
 
                         const divAnswer = document.getElementById('task_14_div_answer')
 
@@ -861,22 +858,11 @@
                         divAnswer.innerHTML = (mes)
 
                         const table = element.firstElementChild.firstElementChild.firstElementChild
-                        const rows = table.rows.length
-                        const cols = table.rows[0].cells.length
-                        // const arr = []
-
-                        // for (let i = 0; i < rows; i++) {
-                        //     arr[i] = []
-                        //     for (let j = 0; j < cols; j++) {
-                        //         arr[i][j] = Number(table.rows[i].cells[j].firstElementChild.value)
-                        //     }
-                        // }
-                        // currentArray = [...arr]
-                        // // console.log('arr :', arr)
-
-                        // return arr
-
-
+                        for (let i = 0; i < saddlePoints.length; i++) {
+                            const row = saddlePoints[i].i
+                            const col = saddlePoints[i].j
+                            table.rows[row].cells[col].firstElementChild.classList.add('bg-lightgreen')                            
+                        }
                     }
 
 

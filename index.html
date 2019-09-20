@@ -810,6 +810,7 @@
                 Матрица:
                 <input class="input-in-text" type="text" name="" id="task_14_input_i" value="3">
                 <input class="input-in-text" type="text" name="" id="task_14_input_j" value="3">
+                <button class="btn btn-long" id = 'task_14_btn'>Рандом</button>
             </p>
             <div id="task_14_div"></div>
             <div id="task_14_div_answer"></div>
@@ -822,6 +823,8 @@
                     const element = document.getElementById('task_14_div')
                     const matrixI = document.getElementById('task_14_input_i')
                     const matrixJ = document.getElementById('task_14_input_j')
+                    const btn = document.getElementById('task_14_btn')
+                    btn.addEventListener("click", eventInputIJ)
                     matrixI.addEventListener("keyup", eventInputIJ)
                     matrixJ.addEventListener("keyup", eventInputIJ)
                     element.addEventListener("keyup", eventElementRun)
@@ -972,7 +975,7 @@
                             if (i === 0) str += `<table>`
                             for (let j = 0; j < matrixJ; j++) {
                                 if (j === 0) str += `<tr>`
-                                str += `<td><input value=${arr[i][j]}></td>`
+                                str += `<td class='td-noborder'><input value=${arr[i][j]}></td>`
                                 if (j === matrixJ - 1) str += `</tr>`
                             }
                             if (i === matrixI - 1) str += `</table>`

@@ -17,10 +17,15 @@ a {
   margin-left: -2px;
   margin-top: 5px;
   transition: background 0.2s linear;
+  outline: none;
 }
 
 .btn:hover {
   background-color: lightgreen;
+}
+
+.btn-long {
+  padding: 4px 30px;
 }
 
 a {
@@ -91,7 +96,7 @@ input {
   border-collapse: collapse;
 }
 .wrap-table td {
-  border: 0;
+  border: 1px solid;
   margin: 0;
   padding: 10px;
 }
@@ -102,8 +107,9 @@ input {
 .table-input input {
   width: 50px;
   text-align: center;
-  /* background-color: inherit; */
-  /* color: inherit; */
+}
+.wrap-table .td-noborder {
+  border: 0;
 }
 
 .width100 {

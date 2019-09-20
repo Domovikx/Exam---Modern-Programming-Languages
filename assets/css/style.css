@@ -121,6 +121,10 @@ textarea {
   box-sizing: border-box;
 }
 
+.bg-lightgreen {
+  background-color: lightgreen;
+}
+
 /* media */
 @media (max-width: 1199px) {
   .wrap-task {
